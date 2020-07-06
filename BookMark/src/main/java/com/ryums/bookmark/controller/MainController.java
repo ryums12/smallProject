@@ -1,8 +1,8 @@
 package com.ryums.bookmark.controller;
 
+import com.ryums.bookmark.dto.MarkDTO;
 import com.ryums.bookmark.service.MainService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -11,12 +11,22 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainController {
 
-    @Autowired
-    MainService mainService;
+    private MainService mainService;
 
     @RequestMapping("/")
     public ModelAndView index() {
         return new ModelAndView("index");
+    }
+
+    @RequestMapping("/mark/create/page")
+    public ModelAndView createMarkPage() {
+        return new ModelAndView("createMark");
+    }
+
+    @RequestMapping("/mark/create.do")
+    public ModelAndView createMark(MarkDTO markDTO) {
+        mainService.createMark(markDTO);
+        return new ModelAndView("createMark");
     }
 
 }

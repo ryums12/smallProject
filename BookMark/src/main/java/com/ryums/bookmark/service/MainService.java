@@ -1,19 +1,20 @@
 package com.ryums.bookmark.service;
 
-import com.ryums.bookmark.domain.entity.TestEntity;
 import com.ryums.bookmark.domain.repository.MainRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ryums.bookmark.dto.MarkDTO;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import javax.transaction.Transactional;
 
 @Service
+@AllArgsConstructor
 public class MainService {
 
-    @Autowired
-    MainRepository mainRepository;
+    private MainRepository mainRepository;
 
-    public List<TestEntity> test() {
-        return mainRepository.findAll();
+    @Transactional
+    public void createMark(MarkDTO markDTO) {
+        mainRepository.save(markDTO.toEntity());
     }
 }
