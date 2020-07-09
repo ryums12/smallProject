@@ -15,5 +15,8 @@
 - **등록 폼**
     - https://colorlib.com/etc/cf/ContactFrom_v10/index.html
     
-- **진행 예정**
-    - 작성 예정
+- **진행 과정**
+    - ver 1.0 - 태그 수동 입력, 폴더 구분 없이 태그 검색으로 북마크 노출
+    
+- **실행 시**
+    - vm option에  -Dspring.config.location= 'project location' /config/application.yml 추가
