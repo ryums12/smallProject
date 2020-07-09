@@ -1,4 +1,4 @@
-package com.ryums.bookmark;
+package com.ryums.bookmark.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
