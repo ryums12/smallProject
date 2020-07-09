@@ -3,12 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>북마크 관리자</title>
-    <link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
-    <script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
-    <script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
-    <script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
-    <a href="/mark/create/page">등록하기</a>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Fixed navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/mark/create/page">Create Mark</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Create Folder</a>
+            </li>
+        </ul>
+        <!--        <form class="form-inline mt-2 mt-md-0">-->
+        <!--            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
+        <!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--        </form>-->
+    </div>
+</nav>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Fluid jumbotron</h1>
+        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    </div>
+</div>
+<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
+<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
+<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
 </body>
 </html>
