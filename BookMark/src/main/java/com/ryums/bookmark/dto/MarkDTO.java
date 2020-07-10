@@ -11,14 +11,14 @@ public class MarkDTO {
 
     private Long idx;
     private String title;
-    private String tags;
+    private String tag;
     private String url;
 
     public MarkEntity toEntity() {
         MarkEntity builder = MarkEntity.builder()
                 .idx(idx)
                 .title(title)
-                .tags(tags)
+                .tag(tag)
                 .url(url)
                 .build();
 

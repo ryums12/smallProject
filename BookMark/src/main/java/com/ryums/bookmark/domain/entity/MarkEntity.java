@@ -20,16 +20,16 @@ public class MarkEntity extends TimeEntity{
     private String title;
 
     @Column(length = 40)
-    private String tags;
+    private String tag;
 
     @Column(length = 100)
     private String url;
 
     @Builder
-    public MarkEntity(Long idx, String title, String tags, String url) {
+    public MarkEntity(Long idx, String title, String tag, String url) {
         this.idx = idx;
         this.title = title;
-        this.tags = tags;
+        this.tag = tag;
         this.url = url;
     }
 
