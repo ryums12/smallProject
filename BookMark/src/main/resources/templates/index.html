@@ -1,141 +1,190 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>북마크 관리자</title>
+    <link rel="icon" type="image/png" href="/images/icons/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/util.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <style>
         body {
             padding-top: 70px;
             background: #f2f2f2;
         }
+
+        .wrapper {
+            display: grid;
+            min-height: 100%;
+        }
+
+        .footer {
+            height: 50px;
+        }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">Fixed navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/mark/create/page">Create Mark</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Create Folder</a>
-            </li>
-        </ul>
 
-    </div>
-</nav>
+<div class="wrapper">
+    <!-- nav -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Fixed navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/mark/create/page">Create Mark</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Create Folder</a>
+                </li>
+            </ul>
 
-<div role="main" class="container-fluid">
-    <div class="container">
-        <form class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-3 mt-2">
-                <div class="card">
-                    <img src="https://placeimg.com/160/160/tech/1" alt="img">
-                    <hr>
-                    <div class="caption text-center">
-                        <h3>제목</h3>
-                        <p>내용</p>
+        </div>
+    </nav>
+    <!-- nav -->
+
+    <!-- main -->
+    <div role="main" class="container-fluid" id="main">
+        <div class="container">
+            <form class="form-inline mt-2 mt-md-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="container mt-4">
+            <div class="row mt-4">
+                <div class="col-md-3 mt-4">
+                    <div class="card">
+                        <img src="https://placeimg.com/160/160/tech/1" alt="img">
+                        <hr>
+                        <div class="caption text-center">
+                            <h3>제목</h3>
+                            <p>내용</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-4">
+                    <div class="card">
+                        <img src="https://placeimg.com/160/160/tech/2" alt="img">
+                        <hr>
+                        <div class="caption text-center">
+                            <h3>제목</h3>
+                            <p>내용</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-4">
+                    <div class="card">
+                        <img src="https://placeimg.com/160/160/tech/3" alt="img">
+                        <hr>
+                        <div class="caption text-center">
+                            <h3>제목</h3>
+                            <p>내용</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-4">
+                    <div class="card">
+                        <img src="https://placeimg.com/160/160/tech/4" alt="img">
+                        <hr>
+                        <div class="caption text-center">
+                            <h3>제목</h3>
+                            <p>내용</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 mt-2">
-                <div class="card">
-                    <img src="https://placeimg.com/160/160/tech/2" alt="img">
-                    <hr>
-                    <div class="caption text-center">
-                        <h3>제목</h3>
-                        <p>내용</p>
+
+            <div class="row mt-4">
+                <div class="col-md-3 mt-4">
+                    <div class="card">
+                        <img src="https://placeimg.com/160/160/tech/5" alt="img">
+                        <hr>
+                        <div class="caption text-center">
+                            <h3>제목</h3>
+                            <p>내용</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 mt-2">
-                <div class="card">
-                    <img src="https://placeimg.com/160/160/tech/3" alt="img">
-                    <hr>
-                    <div class="caption text-center">
-                        <h3>제목</h3>
-                        <p>내용</p>
+                <div class="col-md-3 mt-4">
+                    <div class="card">
+                        <img src="https://placeimg.com/160/160/tech/6" alt="img">
+                        <hr>
+                        <div class="caption text-center">
+                            <h3>제목</h3>
+                            <p>내용</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 mt-2">
-                <div class="card">
-                    <img src="https://placeimg.com/160/160/tech/4" alt="img">
-                    <hr>
-                    <div class="caption text-center">
-                        <h3>제목</h3>
-                        <p>내용</p>
+
+                <div class="col-md-3 mt-4">
+                    <div class="card">
+                        <img src="https://placeimg.com/160/160/tech/7" alt="img">
+                        <hr>
+                        <div class="caption text-center">
+                            <h3>제목</h3>
+                            <p>내용</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mt-4">
+                    <div class="card">
+                        <img src="https://placeimg.com/160/160/tech/8" alt="img">
+                        <hr>
+                        <div class="caption text-center">
+                            <h3>제목</h3>
+                            <p>내용</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row mt-4">
-            <div class="col-md-3 mt-2">
-                <div class="card">
-                    <img src="https://placeimg.com/160/160/tech/5" alt="img">
-                    <hr>
-                    <div class="caption text-center">
-                        <h3>제목</h3>
-                        <p>내용</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mt-2">
-                <div class="card">
-                    <img src="https://placeimg.com/160/160/tech/6" alt="img">
-                    <hr>
-                    <div class="caption text-center">
-                        <h3>제목</h3>
-                        <p>내용</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mt-2">
-                <div class="card">
-                    <img src="https://placeimg.com/160/160/tech/7" alt="img">
-                    <hr>
-                    <div class="caption text-center">
-                        <h3>제목</h3>
-                        <p>내용</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mt-2">
-                <div class="card">
-                    <img src="https://placeimg.com/160/160/tech/8" alt="img">
-                    <hr>
-                    <div class="caption text-center">
-                        <h3>제목</h3>
-                        <p>내용</p>
-                    </div>
-                </div>
-            </div>
+        <div class="container mt-4">
+            <nav aria-label="pagination">
+                <ul class="pagination pagination-sm justify-content-center">
+                    <li class="page-item disabled">
+                        <span class="page-link">Previous</span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item"><a class="page-link" href="#">6</a></li>
+                    <li class="page-item"><a class="page-link" href="#">7</a></li>
+                    <li class="page-item"><a class="page-link" href="#">8</a></li>
+                    <li class="page-item"><a class="page-link" href="#">9</a></li>
+                    <li class="page-item"><a class="page-link" href="#">10</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
+    <!-- main -->
 </div>
 
+<!-- footer -->
+<footer class="footer mt-4 bg-dark">
+    <div class="container text-center">
+        <small class="text-white">Copyright &copy; Your Website</small>
+    </div>
+</footer>
+<!-- footer -->
+
 <script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
+<script src="/js/index.js"></script>
 <script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
 <script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
 </body>
