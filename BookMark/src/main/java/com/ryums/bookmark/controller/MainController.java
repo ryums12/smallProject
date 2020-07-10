@@ -28,8 +28,8 @@ public class MainController {
 
     @ResponseBody
     @RequestMapping("/mark/get.do")
-    public List<MarkEntity> getMarkList(@RequestParam Map<String, Object> param) {
-        return mainService.getMarkList(param);
+    public Map<String, Object> getMarkList(@RequestParam Map<String, Object> param) {
+        return mainService.getMarkListData(param);
     }
 
     @RequestMapping("/mark/create/page")

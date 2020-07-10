@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,11 +26,19 @@ public class MainService {
     }
 
     @Transactional
-    public List<MarkEntity> getMarkList(Map<String, Object> param) {
+    public Map<String, Object> getMarkListData(Map<String, Object> param) {
+        Map<String, Object> dataMap = new HashMap<>();
+
         int page = Integer.parseInt((String) param.get("page"));
         String tag = (String) param.get("tag");
         Pageable pageable = PageRequest.of(page, 8, Sort.by("idx").descending());
 
-        return mainRepository.findAllByTagContaining(pageable, tag);
+        List<MarkEntity> markList = mainRepository.findAllByTagContaining(pageable, tag);
+        int listSize = mainRepository.countAllByTagContaining(tag);
+
+        dataMap.put("markList", markList);
+        dataMap.put("size", listSize);
+
+        return dataMap;
     }
 }

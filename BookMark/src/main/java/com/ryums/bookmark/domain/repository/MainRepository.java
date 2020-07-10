@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface MainRepository extends JpaRepository<MarkEntity, Long> {
     List<MarkEntity> findAllByTagContaining(Pageable pageable, String tag);
+    int countAllByTagContaining(String tag);
 }
