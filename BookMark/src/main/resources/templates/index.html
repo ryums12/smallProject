@@ -8,16 +8,21 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <style>
         body {
-            padding-top: 100px;
+            position: relative;
             background: #f2f2f2;
         }
 
         .wrapper {
-            display: grid;
+            padding-top: 90px;
             min-height: 100%;
+            margin: 0 auto -100px;
         }
 
-        .footer {
+        .push {
+            height: 120px;
+        }
+
+        .h-50px {
             height: 50px;
         }
     </style>
@@ -25,6 +30,7 @@
 <body>
 
 <div class="wrapper">
+
     <!-- nav -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">Fixed navbar</a>
@@ -50,9 +56,9 @@
     <!-- nav -->
 
     <!-- main -->
-    <div role="main" class="container-fluid">
+    <div role="main" class="container-fluid main">
         <div class="container">
-            <input class="form-control w-100" type="text" placeholder="Search" aria-label="Search"
+            <input class="form-control w-100" type="text" placeholder="Search Tag" aria-label="Search"
                    onkeyup="fncGetMarkList(0, this.value);">
         </div>
 
@@ -62,27 +68,28 @@
         </div>
         <!-- list -->
 
-        <!-- pagination -->
-        <div class="container mt-5">
-            <nav aria-label="pagination">
-                <ul class="pagination pagination-sm justify-content-center" id="pagination">
-                    <!-- set pagination by js -->
-                </ul>
-            </nav>
-        </div>
-        <!-- pagination -->
+        <div class="push"></div>
     </div>
     <!-- main -->
 </div>
 
+<!-- pagination -->
+<div class="container-fluid h-50px">
+    <nav aria-label="pagination">
+        <ul class="pagination pagination-sm justify-content-center" id="pagination">
+            <!-- set pagination by js -->
+        </ul>
+    </nav>
+</div>
+<!-- pagination -->
+
 <!-- footer -->
-<footer class="footer mt-4 bg-dark">
-    <div class="container text-center">
+<footer class="bg-dark h-50px">
+    <div class="container-fluid text-center">
         <small class="text-white">Copyright &copy; ryums12</small>
     </div>
 </footer>
 <!-- footer -->
-
 <script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
 <script src="/js/index.js"></script>
 <script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>

@@ -32,14 +32,13 @@ const fncGetMarkList = (page, tag) => {
 
             container.innerHTML = "";
             pagination.innerHTML = "";
-            let listHtml = '';
+            let listHtml = "<div class='row mt-4'>";
             let pageHtml = '';
 
             //목록 innerHtml
             for (let i = 0; i < markList.length; i++) {
-                //첫번째 줄 시작
-                listHtml = i == 0 ? "<div class='row mt-4'>" + listHtml : listHtml;
-                //두번째 줄 시작
+
+                //row 시작
                 listHtml = i == 4 ? listHtml + "<div class='row mt-4'>" : listHtml;
 
                 listHtml += "<div class='col-md-3 mt-4'>"
@@ -53,6 +52,7 @@ const fncGetMarkList = (page, tag) => {
                     + "</div>"
                     + "</div>";
 
+                //row 닫기
                 listHtml = i == 3 || i == 7 ? listHtml + "</div>" : listHtml;
             }
             container.innerHTML = listHtml;
