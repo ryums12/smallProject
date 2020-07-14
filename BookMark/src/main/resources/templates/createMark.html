@@ -19,7 +19,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">Fixed navbar</a>
+    <a class="navbar-brand" href="#">BookMark Manager</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -30,15 +30,15 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="/mark/create/page">Create Mark</a>
+                <a class="nav-link" href="/mark/create">Create Mark</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Create Folder</a>
+                <a class="nav-link" href="/mark/create/tag">Create Tag</a>
             </li>
         </ul>
     </div>
 </nav>
-<div class="container-contact100">
+<div class="container-contact100" style="margin-top: -50px">
     <div class="wrap-contact100">
         <form class="contact100-form validate-form" th:action="@{'/mark/create.do'}" method="post">
 				<span class="contact100-form-title">
@@ -71,6 +71,14 @@
         </form>
     </div>
 </div>
+
+<!-- footer -->
+<footer class="bg-dark" style="height: 50px">
+    <div class="container-fluid text-center">
+        <small class="text-white">Copyright &copy; ryums12</small>
+    </div>
+</footer>
+<!-- footer -->
 
 <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="/vendor/animsition/js/animsition.min.js"></script>

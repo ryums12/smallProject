@@ -46,7 +46,7 @@ const fncGetMarkList = (page, tag) => {
                     + "<img src='https://placeimg.com/160/160/tech/" + i + "'>"
                     + "<hr>"
                     + "<div class='caption text-center'>"
-                    + "<h4>[" + markList[i].tag + "]" + markList[i].title + "</h4>"
+                    + "<h5>[" + markList[i].tag + "]" + markList[i].title + "</h5>"
                     + "<a href='" + markList[i].url + "' target='_blank'>이동</a>"
                     + "</div>"
                     + "</div>"
@@ -66,11 +66,9 @@ const fncGetMarkList = (page, tag) => {
                 pageHtml += "<li class='page-item'>"
                     + "<a class='page-link' href='#' onclick='fncPrevPage(" + page + ",\"" + tag + "\")'>Previous</a>"
                     + "</li>";
-
-                console.log(startPage);
-                console.log(endPage);
+                
                 for (let i = startPage; i < endPage; i++) {
-                    //JPA Pageable 페이지 인식은 0부터 시작하기 때문에 +1이 필요함
+                    //JPA Pageable 페이지는 0부터 시작하기 때문에, 표시 상으로는 +1이 필요함
                     const aClass = page == i ? "page-item active" : "page-item";
                     pageHtml += "<li class='" + aClass + "'>"
                         + "<a href='#' class='page-link' onclick='fncGetMarkList(" + i + ",\""+ tag +"\")'>" + (i + 1)
