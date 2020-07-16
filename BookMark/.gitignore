@@ -19,7 +19,8 @@ build/
 *.iws
 *.iml
 *.ipr
-*.yml
+/config
+/upload-dir
 out/
 
 ### NetBeans ###
