@@ -1,0 +1,36 @@
+package com.ryums.bookmark.controller;
+
+import com.ryums.bookmark.dto.TagDTO;
+import com.ryums.bookmark.service.TagService;
+import com.ryums.bookmark.utils.files.FileSystemStorageService;
+import com.ryums.bookmark.utils.files.StorageProperties;
+import com.ryums.bookmark.utils.files.StorageService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+
+@AllArgsConstructor
+@Controller
+public class TagController {
+
+    private TagService tagService;
+
+    @RequestMapping("/tag/create")
+    public ModelAndView createTagPage() {
+        return new ModelAndView("createTag");
+    }
+
+    @RequestMapping("/tag/create.do")
+    public ModelAndView createTag(TagDTO tagDTO, MultipartHttpServletRequest request) {
+        String fileName = tagService.createTag(tagDTO);
+        MultipartFile file = request.getFile("tagImg");
+        StorageProperties storageProperties = new StorageProperties();
+        storageProperties.setLocation("upload-dir");
+        FileSystemStorageService storageService = new FileSystemStorageService(storageProperties);
+        storageService.store(file, fileName);
+        return new ModelAndView("createTag");
+    }
+}
