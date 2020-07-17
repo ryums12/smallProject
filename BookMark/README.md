@@ -16,11 +16,18 @@
     - https://colorlib.com/etc/cf/ContactFrom_v10/index.html
     
 - **진행 과정**
-    - [X] 태그 수동 입력, 폴더 구분 없이 태그 검색으로 북마크 노출
-    - [ ] 태그에 알맞는 썸네일 등록, 등록된 썸네일이 없는 태그일 시 기본 이미지 노출
+    - 기초 
+        - [X] 태그 수동 입력, 폴더 구분 없이 태그 검색으로 북마크 노출
+    - 태그, 마크 분할 등록
+        - 태그 
+            - [X] 태그 등록
+        - 마크 
+            - [ ] 마크 등록
+        - 목록
+            - [ ] 해당 마크의 태그 이미지를 썸네일로 노출
 
 - **Good If Do**
-    - [ ] 템플릿 부분 부트스트랩으로 변경
+    - [X] 템플릿 부분 부트스트랩으로 변경
     
 - **실행 시**
     - vm option에  -Dspring.config.location= 'project location' /config/application.yml 추가
