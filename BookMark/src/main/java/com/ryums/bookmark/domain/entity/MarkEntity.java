@@ -14,23 +14,27 @@ public class MarkEntity extends TimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idx;
-
-    @Column(length = 20)
-    private String title;
+    private Long markIdx;
 
     @Column(length = 40)
-    private String tag;
+    private String markTitle;
+
+    @Column()
+    private Long tagIdx;
+//
+//    @Column(length = 30)
+//    private String tagName;
 
     @Column(length = 100)
-    private String url;
+    private String markUrl;
 
     @Builder
-    public MarkEntity(Long idx, String title, String tag, String url) {
-        this.idx = idx;
-        this.title = title;
-        this.tag = tag;
-        this.url = url;
+    public MarkEntity(Long markIdx, String markTitle, Long tagIdx, String tagName, String markUrl) {
+        this.markIdx = markIdx;
+        this.markTitle = markTitle;
+        this.tagIdx = tagIdx;
+//        this.tagName = tagName;
+        this.markUrl = markUrl;
     }
 
 }

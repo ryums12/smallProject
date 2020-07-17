@@ -1,7 +1,9 @@
 window.onload = () => {
-    const container = document.getElementById('container-list');
-    if (container) {
-        fncGetMarkList(0, "");
+    const containerList = document.getElementById('container-list');
+
+    /** 목록 화면 */
+    if (containerList) {
+        // fncGetMarkList(0, "");
     }
 };
 
@@ -46,8 +48,8 @@ const fncGetMarkList = (page, tag) => {
                     + "<img src='https://placeimg.com/160/160/tech/" + i + "'>"
                     + "<hr>"
                     + "<div class='caption text-center'>"
-                    + "<h5>[" + markList[i].tag + "]" + markList[i].title + "</h5>"
-                    + "<a href='" + markList[i].url + "' target='_blank'>이동</a>"
+                    + "<h5>[" + markList[i].tagName + "]" + markList[i].markTitle + "</h5>"
+                    + "<a href='" + markList[i].markUrl + "' target='_blank'>이동</a>"
                     + "</div>"
                     + "</div>"
                     + "</div>";

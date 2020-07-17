@@ -1,0 +1,15 @@
+create table mark (
+    mark_idx int primary key auto_increment,
+    mark_title varchar(40),
+    tag_idx long,
+    mark_url varchar(100),
+    reg_dt datetime
+);
+
+create table tag (
+    tag_idx int primary key auto_increment,
+    tag_name varchar(30),
+    img_url varchar(50),
+    reg_dt datetime
+);
+

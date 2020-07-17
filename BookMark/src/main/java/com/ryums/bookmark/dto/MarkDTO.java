@@ -9,17 +9,19 @@ import lombok.*;
 @NoArgsConstructor
 public class MarkDTO {
 
-    private Long idx;
-    private String title;
-    private String tag;
-    private String url;
+    private Long markIdx;
+    private String markTitle;
+    private Long tagIdx;
+//    private String tagName;
+    private String markUrl;
 
     public MarkEntity toEntity() {
         MarkEntity builder = MarkEntity.builder()
-                .idx(idx)
-                .title(title)
-                .tag(tag)
-                .url(url)
+                .markIdx(markIdx)
+                .markTitle(markTitle)
+                .tagIdx(tagIdx)
+//                .tagName(tagName)
+                .markUrl(markUrl)
                 .build();
 
         return builder;

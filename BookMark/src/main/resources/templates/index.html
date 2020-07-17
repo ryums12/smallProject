@@ -4,74 +4,51 @@
     <meta charset="UTF-8">
     <title>북마크 관리자</title>
     <link rel="icon" type="image/png" href="/images/icons/favicon.ico"/>
-    <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <style>
-        body {
-            position: relative;
-            background: #f2f2f2;
-        }
-
-        .wrapper {
-            padding-top: 90px;
-            min-height: 100%;
-            margin: 0 auto -100px;
-        }
-
-        .push {
-            height: 120px;
-        }
-
-        .h-50px {
-            height: 50px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
 
-<div class="wrapper">
+<!-- nav -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark font-weight-bold">
+    <a class="navbar-brand" href="#">BookMark Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/mark/create">Create Mark</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tag/create">Create Tag</a>
+            </li>
+        </ul>
 
-    <!-- nav -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">BookMark Manager</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/mark/create">Create Mark</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/mark/create/tag">Create Tag</a>
-                </li>
-            </ul>
+    </div>
+</nav>
+<!-- nav -->
 
-        </div>
-    </nav>
-    <!-- nav -->
-
-    <!-- main -->
+<!-- main -->
+<div class="wrapper mb-m-100px">
     <div role="main" class="container-fluid main">
         <div class="container-fluid">
             <input class="form-control w-100" type="text" placeholder="Search Tag" aria-label="Search"
                    onkeyup="fncGetMarkList(0, this.value);">
         </div>
-
         <!-- list -->
         <div class="container-fluid mt-4" id="container-list">
             <!-- set list by js -->
         </div>
         <!-- list -->
-
-        <div class="push"></div>
     </div>
-    <!-- main -->
 </div>
+<!-- main -->
 
 <!-- pagination -->
 <div class="container-fluid h-50px">
@@ -90,9 +67,10 @@
     </div>
 </footer>
 <!-- footer -->
+
 <script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
-<script src="/js/index.js"></script>
 <script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
 <script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
+<script src='/js/index.js'></script>
 </body>
 </html>
