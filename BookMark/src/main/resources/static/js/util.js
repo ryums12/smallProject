@@ -13,17 +13,14 @@ const fncCheckMarkValue = () => {
   if (!markTitle.value) {
     alert("마크 제목을 입력해 주십시오.");
     markTitle.focus();
-    return false;
   } else if (!tagIdx) {
     alert("등록할 태그를 입력해 주십시오. \n 선택을 통해서만 가능합니다.");
     tagName.focus();
-    return false;
   } else if (!markUrl.value) {
     alert("경로를 등록해 주십시오.");
     markUrl.focus();
-    return false;
   } else {
-    return true;
+    confirm("등록 하시겠습니까?");
   }
 };
 

@@ -43,15 +43,15 @@ public class MarkService {
     public Map<String, Object> getMarkListData(Map<String, Object> param) {
         Map<String, Object> dataMap = new HashMap<>();
 
-//        int page = Integer.parseInt((String) param.get("page"));
-//        String tag = (String) param.get("tag");
-//        Pageable pageable = PageRequest.of(page, 8, Sort.by("markIdx").descending());
+        int page = Integer.parseInt((String) param.get("page"));
+        String tag = (String) param.get("tag");
+        Pageable pageable = PageRequest.of(page, 8, Sort.by("markIdx").descending());
 
-//        List<MarkEntity> markList = markRepository.findAllByTagNameContaining(pageable, tag);
-//        int listSize = markRepository.countAllByTagNameContaining(tag);
-//
-//        dataMap.put("markList", markList);
-//        dataMap.put("size", listSize);
+        List<MarkEntity> markList = markRepository.findMarkList(tag, pageable);
+        int listSize = markRepository.getMarkCount(tag);
+
+        dataMap.put("markList", markList);
+        dataMap.put("size", listSize);
 
         return dataMap;
     }

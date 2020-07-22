@@ -16,10 +16,10 @@ public class TagEntity extends TimeEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tagIdx;
 
-    @Column(length = 30)
+    @Column(name = "tag_name")
     private String tagName;
 
-    @Column(length = 30)
+    @Column(name = "img_url")
     private String imgUrl;
 
     @Builder
