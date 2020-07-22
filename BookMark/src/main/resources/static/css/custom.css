@@ -23,3 +23,8 @@ html, body {
 .mb-m-100px {
     margin-bottom: -100px;
 }
+
+.custom-thumbnail {
+    height: 160px;
+    width: 100%;
+}

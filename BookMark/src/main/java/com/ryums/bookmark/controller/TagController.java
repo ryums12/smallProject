@@ -18,6 +18,8 @@ public class TagController {
 
     private TagService tagService;
 
+    private StorageService storageService;
+
     @RequestMapping("/tag/create")
     public ModelAndView createTagPage() {
         return new ModelAndView("createTag");
@@ -27,9 +29,6 @@ public class TagController {
     public ModelAndView createTag(TagDTO tagDTO, MultipartHttpServletRequest request) {
         String fileName = tagService.createTag(tagDTO);
         MultipartFile file = request.getFile("tagImg");
-        StorageProperties storageProperties = new StorageProperties();
-        storageProperties.setLocation("upload-dir");
-        FileSystemStorageService storageService = new FileSystemStorageService(storageProperties);
         storageService.store(file, fileName);
         return new ModelAndView("createTag");
     }

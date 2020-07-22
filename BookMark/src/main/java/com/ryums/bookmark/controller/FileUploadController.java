@@ -9,6 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 
 @Controller
 public class FileUploadController {
@@ -22,11 +25,21 @@ public class FileUploadController {
 
 	@GetMapping("/files/{filename:.+}")
 	@ResponseBody
-	public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+	public ResponseEntity<Resource> serveFile(@PathVariable String filename) throws UnsupportedEncodingException {
 
 		Resource file = storageService.loadAsResource(filename);
+		String fileName = file.getFilename();
+		String encodeFileName = fileName;
+
+		try {
+			encodeFileName = URLEncoder.encode(fileName,"UTF-8");
+			encodeFileName = encodeFileName.replaceAll("\\+", " ");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-				"attachment; filename=\"" + file.getFilename() + "\"").body(file);
+				"attachment; filename=\"" + encodeFileName + "\"").body(file);
 	}
 
 	@ExceptionHandler(StorageFileNotFoundException.class)

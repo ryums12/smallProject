@@ -34,8 +34,8 @@ public class MarkController {
     }
 
     @RequestMapping("/mark/create.do")
-    public ModelAndView createMark(MarkDTO markDTO) {
-        markService.createMark(markDTO);
+    public ModelAndView createMark(@RequestParam Map<String,Object> param) {
+        markService.createMark(param);
         return new ModelAndView("createMark");
     }
 

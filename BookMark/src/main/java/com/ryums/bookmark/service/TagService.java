@@ -16,7 +16,7 @@ public class TagService {
     @Transactional
     public String createTag(TagDTO tagDTO) {
         String imgName = "tag_" + tagDTO.getTagName();
-        String imgUrl = "/file/" + imgName;
+        String imgUrl = "/files/" + imgName;
         tagDTO.setImgUrl(imgUrl);
         tagRepository.save(tagDTO.toEntity());
 

@@ -1,8 +1,8 @@
 window.onload = () => {
-    const containerList = document.getElementById('container-list');
+    const markListContainer = document.getElementById('mark-list-container');
 
     /** 목록 화면 */
-    if (containerList) {
+    if (markListContainer) {
         fncGetMarkList(0, "");
     }
 };
@@ -27,10 +27,10 @@ const fncGetMarkList = (page, tag) => {
             alert("통신 오류가 발생 하였습니다. 잠시 후 다시 시도해 주세요");
         }
         , success: (response) => {
-            console.log(response);
+
             const markList = response.markList
                 , listSize = response.size
-                , container = document.getElementById('container-list')
+                , container = document.getElementById('mark-list-container')
                 , pagination = document.getElementById('pagination');
 
             container.innerHTML = "";
@@ -46,7 +46,8 @@ const fncGetMarkList = (page, tag) => {
 
                 listHtml += "<div class='col-md-3 mt-4'>"
                     + "<div class='card'>"
-                    + "<img src='https://placeimg.com/160/160/tech/" + i + "'>"
+                    + "<img src='" + markList[i].tagEntity.imgUrl + "' class='custom-thumbnail'>"
+                    // + "<img src='https://placeimg.com/160/160/tech/" + i + "'>"
                     + "<hr>"
                     + "<div class='caption text-center'>"
                     + "<h5>[" + markList[i].tagEntity.tagName + "]" + markList[i].markTitle + "</h5>"

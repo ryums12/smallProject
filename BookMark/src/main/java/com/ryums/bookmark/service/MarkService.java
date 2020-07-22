@@ -35,7 +35,16 @@ public class MarkService {
     };
 
     @Transactional
-    public void createMark(MarkDTO markDTO) {
+    public void createMark(Map<String,Object> param) {
+
+        MarkDTO markDTO = new MarkDTO();
+
+        markDTO.setMarkTitle((String) param.get("mark_title"));
+        markDTO.setTagIdx(Long.parseLong((String) param.get("tag_idx")));
+        markDTO.setMarkUrl((String) param.get("mark_url"));
+
+        System.out.println("Is this null?? ====== " + markDTO);
+
         markRepository.save(markDTO.toEntity());
     }
 

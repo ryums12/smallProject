@@ -1,6 +1,5 @@
 package com.ryums.bookmark.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,12 +22,18 @@ public class MarkEntity extends TimeEntity{
     @Column(name = "mark_url")
     private String markUrl;
 
+    @Column(name = "tag_idx")
+    private Long tagIdx;
+
     @ManyToOne
     @JoinColumn(name = "tag_idx", insertable = false, updatable = false)
     private TagEntity tagEntity;
 
     @Builder
-    public MarkEntity(Long markIdx, String markTitle, Long tagIdx, String markUrl) {
+    public MarkEntity(String markTitle, Long tagIdx, String markUrl) {
+        this.markTitle = markTitle;
+        this.tagIdx = tagIdx;
+        this.markUrl = markUrl;
     }
 
 }
