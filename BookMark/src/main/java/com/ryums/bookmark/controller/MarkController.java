@@ -1,7 +1,7 @@
 package com.ryums.bookmark.controller;
 
-import com.ryums.bookmark.dto.MarkDTO;
 import com.ryums.bookmark.service.MarkService;
+import com.ryums.bookmark.service.TagService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +16,7 @@ import java.util.Map;
 public class MarkController {
 
     private MarkService markService;
+    private TagService tagService;
 
     @RequestMapping("/")
     public ModelAndView index() {
@@ -30,7 +31,7 @@ public class MarkController {
 
     @RequestMapping("/mark/create")
     public ModelAndView createMarkPage() {
-        return new ModelAndView("createMark", markService.getTagList());
+        return new ModelAndView("createMark", tagService.getTagList());
     }
 
     @RequestMapping("/mark/create.do")
