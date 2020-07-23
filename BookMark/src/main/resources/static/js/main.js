@@ -1,13 +1,4 @@
-window.onload = () => {
-    const markListContainer = document.getElementById('mark-list-container');
-
-    /** 목록 화면 */
-    if (markListContainer) {
-        fncGetMarkList(0, "");
-    }
-};
-
-const fncGetMarkList = (page, tag) => {
+function fncGetMarkList (page, tag) {
 
     const data = {
         "page": page,
@@ -47,11 +38,11 @@ const fncGetMarkList = (page, tag) => {
                 listHtml += "<div class='col-md-3 mt-4'>"
                     + "<div class='card'>"
                     + "<img src='" + markList[i].tagEntity.imgUrl + "' class='custom-thumbnail'>"
-                    // + "<img src='https://placeimg.com/160/160/tech/" + i + "'>"
                     + "<hr>"
                     + "<div class='caption text-center'>"
-                    + "<h5>[" + markList[i].tagEntity.tagName + "]" + markList[i].markTitle + "</h5>"
-                    + "<a href='" + markList[i].markUrl + "' target='_blank'>이동</a>"
+                    + "<h6>[" + markList[i].tagEntity.tagName + "]" + markList[i].markTitle + "</h6>"
+                    + "<button class='btn btn-primary' data-url='" + markList[i].markUrl +"' onclick='fncGoToLink(this)'>이동</button>"
+                    + "<button class='btn btn-success'>수정</button>"
                     + "</div>"
                     + "</div>"
                     + "</div>";
@@ -87,20 +78,19 @@ const fncGetMarkList = (page, tag) => {
             }
         }
     });
-};
+}
 
-const fncPrevPage = (page, tag) => {
-    if (page == 0) {
-        alert("첫 번째 페이지입니다.");
-    } else {
-        fncGetMarkList(page - 1, tag);
-    }
-};
+function fncGoToLink(dom) {
+    const url = dom.dataset.url;
+    window.open(url, "_blank");
+}
 
-const fncNextPage = (page, maxPage, tag) => {
-    if ((page + 1) == maxPage) {
-        alert("마지막 페이지입니다.");
-    } else {
-        fncGetMarkList(page + 1, tag);
-    }
-};
+function fncPrevPage (page, tag)  {
+    if (page == 0) alert("첫 번째 페이지입니다.");
+    else fncGetMarkList(page - 1, tag);
+}
+
+function fncNextPage (page, maxPage, tag) {
+    if ((page + 1) == maxPage) alert("마지막 페이지입니다.");
+    else fncGetMarkList(page + 1, tag);
+}
