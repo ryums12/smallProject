@@ -1,4 +1,4 @@
-const fncCheckMarkValue = () => {
+function fncCheckMarkValue() {
 
     const markTitle = document.getElementById('mark-title')
         , tagName = document.getElementById('tag-name')
@@ -21,7 +21,8 @@ const fncCheckMarkValue = () => {
     return false;
 };
 
-const fncSetTagToCreateMark = (dom) => {
+function fncSetTagToCreateMark(dom) {
+
     const tagName = dom.parentElement.parentElement.children[0].children[0].innerHTML
         , tagIdx = dom.parentElement.parentElement.children[0].children[1].value
         , inputTagName = document.getElementById('tag-name')
