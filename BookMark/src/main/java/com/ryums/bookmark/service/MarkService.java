@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
 
 import javax.transaction.Transactional;
 import java.util.HashMap;
@@ -19,16 +20,10 @@ import java.util.Map;
 public class MarkService {
 
     private MarkRepository markRepository;
+    private TagService tagService;
 
     @Transactional
-    public void createMark(Map<String,Object> param) {
-
-        MarkDTO markDTO = new MarkDTO();
-
-        markDTO.setMarkTitle((String) param.get("mark_title"));
-        markDTO.setTagIdx(Long.parseLong((String) param.get("tag_idx")));
-        markDTO.setMarkUrl((String) param.get("mark_url"));
-
+    public void createMark(MarkDTO markDTO) {
         markRepository.save(markDTO.toEntity());
     }
 
@@ -47,5 +42,14 @@ public class MarkService {
         dataMap.put("size", listSize);
 
         return dataMap;
+    }
+
+    @Transactional
+    public ModelMap getMarkDetail(Long markIdx) {
+
+        ModelMap modelMap = tagService.getTagList();
+        modelMap.put("mark", markRepository.findAllByMarkIdx(markIdx));
+
+        return modelMap;
     }
 }

@@ -19,7 +19,7 @@ public class TagController {
 
     @RequestMapping("/tag/create")
     public ModelAndView createTagPage() {
-        return new ModelAndView("createTag");
+        return new ModelAndView("/tag/createTag");
     }
 
     @RequestMapping("/tag/create.do")

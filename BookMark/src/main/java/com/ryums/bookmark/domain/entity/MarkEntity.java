@@ -25,15 +25,25 @@ public class MarkEntity extends TimeEntity{
     @Column(name = "tag_idx")
     private Long tagIdx;
 
+    @Column(name ="use_yn")
+    private String useYn;
+
     @ManyToOne
     @JoinColumn(name = "tag_idx", insertable = false, updatable = false)
     private TagEntity tagEntity;
 
     @Builder
-    public MarkEntity(String markTitle, Long tagIdx, String markUrl) {
+    public MarkEntity(Long markIdx, String markTitle,
+                      Long tagIdx, String markUrl, String useYn) {
+        this.markIdx = markIdx;
         this.markTitle = markTitle;
         this.tagIdx = tagIdx;
         this.markUrl = markUrl;
+        this.useYn = useYn;
     }
 
+    @PrePersist
+    public void prePersist() {
+        this.useYn = this.useYn == null ? "Y" : this.useYn;
+    }
 }

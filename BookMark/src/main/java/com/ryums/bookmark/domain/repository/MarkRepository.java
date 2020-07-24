@@ -9,9 +9,15 @@ import java.util.List;
 
 public interface MarkRepository extends JpaRepository<MarkEntity, Long> {
 
-    @Query(value = "select mark from MarkEntity mark where mark.tagEntity.tagName like %?1%")
+    @Query(value = "select mark from MarkEntity mark "
+                 + "where mark.tagEntity.tagName like %?1% "
+                 + "and mark.useYn = 'Y'")
     List<MarkEntity> findMarkList(String tagName, Pageable pageable);
 
-    @Query(value = "select count(mark) from MarkEntity mark where mark.tagEntity.tagName like %?1%")
+    @Query(value = "select count(mark) from MarkEntity mark "
+                 + "where mark.tagEntity.tagName like %?1%"
+                 + "and mark.useYn = 'Y'")
     int getMarkCount(String tagName);
+
+    MarkEntity findAllByMarkIdx(Long markIdx);
 }

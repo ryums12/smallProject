@@ -1,9 +1,11 @@
 package com.ryums.bookmark.controller;
 
+import com.ryums.bookmark.dto.MarkDTO;
 import com.ryums.bookmark.service.MarkService;
 import com.ryums.bookmark.service.TagService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,13 +33,18 @@ public class MarkController {
 
     @RequestMapping("/mark/create")
     public ModelAndView createMarkPage() {
-        return new ModelAndView("createMark", tagService.getTagList());
+        return new ModelAndView("/mark/createMark", tagService.getTagList());
     }
 
     @RequestMapping("/mark/create.do")
-    public ModelAndView createMark(@RequestParam Map<String,Object> param) {
-        markService.createMark(param);
-        return new ModelAndView("createMark");
+    public ModelAndView createMark(MarkDTO markDTO) {
+        markService.createMark(markDTO);
+        return new ModelAndView("index");
+    }
+
+    @RequestMapping("/mark/{markIdx}")
+    public ModelAndView getMarkDetail(@PathVariable("markIdx") Long markIdx) {
+        return new ModelAndView("/mark/modalMark", markService.getMarkDetail(markIdx));
     }
 
 }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css">
-    <link rel="icon" type="image/png" href="/images/icons/favicon.ico"/>
+    <link rel="icon" type="image/png" href="/static/images/icons/favicon.ico"/>
 </head>
 <body>
 <!-- nav -->
@@ -42,21 +42,24 @@
             <hr>
             <div class="form-group">
                 <label for="mark-title">Mark Title</label>
-                <input type="text" class="form-control form-control-lg" id="mark-title" name="mark_title"
+                <input type="text" class="form-control form-control-lg"
+                       id="mark-title" name="markTitle"
                        placeholder="Input Your Title">
             </div>
             <div class="form-group">
                 <label for="tag-name">Mark Tag</label>
-                <input type="text" class="form-control form-control-lg" id="tag-name" name="mark_tag"
-                       placeholder="Input Your Tag" onfocus="fncPreventInput(this)">
-                <input type="hidden" name="tag_idx" id="tag-idx">
+                <input type="text" class="form-control form-control-lg" id="tag-name"
+                       placeholder="Input Your Tag"
+                       onfocus="fncPreventInput(this)" autocomplete="off">
+                <input type="hidden" name="tagIdx" id="tag-idx">
                 <br>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#searchTagModal">검색
+                <button type="button" class="btn btn-success"
+                        data-toggle="modal" data-target="#searchTagModal">선택
                 </button>
             </div>
             <div class="form-group">
                 <label for="mark-url">Mark Url</label>
-                <input type="text" class="form-control form-control-lg" id="mark-url" name="mark_url"
+                <input type="text" class="form-control form-control-lg" id="mark-url" name="markUrl"
                        placeholder="Input Your Url">
             </div>
             <hr>
@@ -68,18 +71,19 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="searchTagModal" tabindex="-1" role="dialog" aria-labelledby="searchTagModalLabel"
+<div class="modal fade" id="searchTagModal" tabindex="-1"
+     role="dialog" aria-labelledby="searchTagModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="searchTagModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="searchTagModalLabel">태그 선택하기</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body overflow-auto text-center" style="height: 300px">
-                <table class="table table-bordered table-hover">
+            <div class="modal-body overflow-auto" style="height: 300px">
+                <table class="table table-bordered table-hover text-center">
                     <thead class="thead-dark">
                     <tr>
                         <th>태그</th>
@@ -88,7 +92,7 @@
                     </thead>
                     <tbody>
                         <tr th:each="tag : ${tagList}">
-                            <td>
+                            <td class="align-middle">
                                 <span th:text="${tag.tagName}"></span>
                                 <input type="hidden" th:value="${tag.tagIdx}">
                             </td>
@@ -116,7 +120,7 @@
 <script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
 <script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
 <script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
-<script src="/js/util.js"></script>
-<script src="/js/mark.js"></script>
+<script src='/js/util.js'></script>
+<script src='/js/mark.js'></script>
 </body>
 </html>

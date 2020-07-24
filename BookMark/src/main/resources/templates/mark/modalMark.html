@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- Modal -->
+<div class="modal-header">
+    <h5 class="modal-title" id="modal-update-mark-title">마크 수정</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="card form-box">
+        <div class="card-body">
+            <form method="post" th:action="@{'/mark/create.do'}"
+                  onsubmit="return confirm('수정 하시겠습니까?')">
+                <input type="hidden" th:value="*{mark.markIdx}" name="markIdx">
+                <div class="form-group">
+                    <label>제목</label>
+                    <input type="text" class="form-control"
+                           name="markTitle" th:value="${mark.markTitle}">
+                </div>
+                <div class="form-group">
+                    <label>태그</label>
+                    <div>
+                        <select class="custom-select" name="tagIdx">
+                            <option th:each="tag : ${tagList}"
+                                    th:value="${tag.tagIdx}"
+                                    th:text="${tag.tagName}"
+                                    th:selected="${mark.tagIdx == tag.tagIdx}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>링크</label>
+                    <input type="text" class="form-control"
+                           name="markUrl" th:value="${mark.markUrl}">
+                </div>
+                <div class="form-group">
+                    <label>사용 여부</label>
+                    <div>
+                        <label class="radio-inline">
+                            <input type="radio" name="useYn" value="Y"
+                                   th:checked="${mark.useYn}=='Y'">사용
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="useYn" value="N"
+                                   th:checked="${mark.useYn}=='N'">사용 중지
+                        </label>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">저장</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+</html>
