@@ -33,7 +33,7 @@ public class MarkController {
 
     @RequestMapping("/mark/create")
     public ModelAndView createMarkPage() {
-        return new ModelAndView("/mark/createMark", tagService.getTagList());
+        return new ModelAndView("/mark/markCreate", tagService.getTagList());
     }
 
     @RequestMapping("/mark/create.do")
@@ -44,7 +44,7 @@ public class MarkController {
 
     @RequestMapping("/mark/{markIdx}")
     public ModelAndView getMarkDetail(@PathVariable("markIdx") Long markIdx) {
-        return new ModelAndView("/mark/modalMark", markService.getMarkDetail(markIdx));
+        return new ModelAndView("/mark/markModal", markService.getMarkDetail(markIdx));
     }
 
 }

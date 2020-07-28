@@ -19,14 +19,14 @@ public class TagController {
 
     @RequestMapping("/tag/create")
     public ModelAndView createTagPage() {
-        return new ModelAndView("/tag/createTag");
+        return new ModelAndView("/tag/tagCreate");
     }
 
     @RequestMapping("/tag/create.do")
-    public ModelAndView createTag(TagDTO tagDTO, MultipartHttpServletRequest request) {
+    public String createTag(TagDTO tagDTO, MultipartHttpServletRequest request) {
         String fileName = tagService.createTag(tagDTO);
         MultipartFile file = request.getFile("tagImg");
         storageService.store(file, fileName);
-        return new ModelAndView("createTag");
+        return "redirect:/mark/create";
     }
 }
