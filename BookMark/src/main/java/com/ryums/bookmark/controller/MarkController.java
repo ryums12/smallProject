@@ -37,9 +37,9 @@ public class MarkController {
     }
 
     @RequestMapping("/mark/create.do")
-    public ModelAndView createMark(MarkDTO markDTO) {
+    public String createMark(MarkDTO markDTO) {
         markService.createMark(markDTO);
-        return new ModelAndView("index");
+        return "redirect:/";
     }
 
     @RequestMapping("/mark/{markIdx}")

@@ -4,6 +4,8 @@ import com.ryums.bookmark.domain.entity.MarkEntity;
 import com.ryums.bookmark.domain.repository.MarkRepository;
 import com.ryums.bookmark.dto.MarkDTO;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -21,6 +23,7 @@ public class MarkService {
 
     private MarkRepository markRepository;
     private TagService tagService;
+    private ModelMapper modelMapper;
 
     @Transactional
     public void createMark(MarkDTO markDTO) {
@@ -35,7 +38,15 @@ public class MarkService {
         String tag = (String) param.get("tag");
         Pageable pageable = PageRequest.of(page, 8, Sort.by("markIdx").descending());
 
-        List<MarkEntity> markList = markRepository.findMarkList(tag, pageable);
+        List<MarkEntity> entityMarkList = markRepository.findMarkList(tag, "Y", pageable);
+        List<MarkDTO> markList = modelMapper
+                .map(entityMarkList, new TypeToken<List<MarkDTO>>() {}.getType());
+
+        for(int i = 0; i < entityMarkList.size(); i++) {
+            markList.get(i).setTagName(entityMarkList.get(i).getTagEntity().getTagName());
+            markList.get(i).setImgUrl(entityMarkList.get(i).getTagEntity().getImgUrl());
+        }
+
         int listSize = markRepository.getMarkCount(tag);
 
         dataMap.put("markList", markList);
@@ -48,7 +59,9 @@ public class MarkService {
     public ModelMap getMarkDetail(Long markIdx) {
 
         ModelMap modelMap = tagService.getTagList();
-        modelMap.put("mark", markRepository.findAllByMarkIdx(markIdx));
+        MarkEntity markEntity = markRepository.findAllByMarkIdx(markIdx);
+        MarkDTO markDTO = modelMapper.map(markEntity, MarkDTO.class);
+        modelMap.put("mark", markDTO);
 
         return modelMap;
     }

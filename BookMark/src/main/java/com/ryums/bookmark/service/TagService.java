@@ -4,6 +4,8 @@ import com.ryums.bookmark.domain.entity.TagEntity;
 import com.ryums.bookmark.domain.repository.TagRepository;
 import com.ryums.bookmark.dto.TagDTO;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
@@ -15,9 +17,11 @@ import java.util.List;
 public class TagService {
 
     private TagRepository tagRepository;
+    private ModelMapper modelMapper;
 
     @Transactional
     public String createTag(TagDTO tagDTO) {
+
         String imgName = "tag_" + tagDTO.getTagName();
         String imgUrl = "/files/" + imgName;
         tagDTO.setImgUrl(imgUrl);
@@ -31,7 +35,9 @@ public class TagService {
 
         ModelMap modelMap = new ModelMap();
 
-        List<TagEntity> tagList = tagRepository.findAll();
+        List<TagEntity> entityTagList = tagRepository.findAll();
+        List<TagDTO> tagList = modelMapper
+                .map(entityTagList, new TypeToken<List<TagDTO>>() {}.getType());
         modelMap.put("tagList", tagList);
 
         return modelMap;

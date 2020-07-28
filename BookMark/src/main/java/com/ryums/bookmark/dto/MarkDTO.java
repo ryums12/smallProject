@@ -15,6 +15,9 @@ public class MarkDTO {
     private String markUrl;
     private String useYn;
 
+    private String imgUrl;
+    private String TagName;
+
     public MarkEntity toEntity() {
         MarkEntity builder = MarkEntity.builder()
                 .markIdx(markIdx)
