@@ -16,8 +16,8 @@ public interface MarkRepository extends JpaRepository<MarkEntity, Long> {
 
     @Query(value = "select count(mark) from MarkEntity mark "
                  + "where mark.tagEntity.tagName like %?1%"
-                 + "and mark.useYn = 'Y'")
-    int getMarkCount(String tagName);
+                 + "and mark.useYn = ?2")
+    int getMarkCount(String tagName, String useYn);
 
     MarkEntity findAllByMarkIdx(Long markIdx);
 }

@@ -47,7 +47,7 @@ public class MarkService {
             markList.get(i).setImgUrl(entityMarkList.get(i).getTagEntity().getImgUrl());
         }
 
-        int listSize = markRepository.getMarkCount(tag);
+        int listSize = markRepository.getMarkCount(tag, "Y");
 
         dataMap.put("markList", markList);
         dataMap.put("size", listSize);

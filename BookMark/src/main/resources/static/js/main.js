@@ -24,10 +24,10 @@ function fncGetMarkList(page, tag) {
 
         listHtml += "<div class='col-md-3 mt-4'>"
                     + "<div class='card'>"
-                        + "<img src='" + markList[i].tagEntity.imgUrl + "' class='custom-thumbnail'>"
+                        + "<img src='" + markList[i].imgUrl + "' class='custom-thumbnail'>"
                         + "<hr>"
                         + "<div class='caption text-center'>"
-                             + "<h6>[" + markList[i].tagEntity.tagName + "]" + markList[i].markTitle + "</h6>"
+                             + "<h6>[" + markList[i].tagName + "]" + markList[i].markTitle + "</h6>"
                              + "<button class='btn btn-primary' "
                                      + "data-url='" + markList[i].markUrl + "'"
                                      + "onclick='fncGoToMarkLink(this)'>이동</button>"
