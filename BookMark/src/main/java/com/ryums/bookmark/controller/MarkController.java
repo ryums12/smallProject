@@ -48,4 +48,8 @@ public class MarkController {
         return new ModelAndView("/mark/markModal", markService.getMarkDetail(markIdx));
     }
 
+    @RequestMapping("/mark/Unused")
+    public ModelAndView getUnusedMarkList() {
+       return new ModelAndView("/mark/markUnUsedList", utilMethod.setType("unused"));
+    }
 }
