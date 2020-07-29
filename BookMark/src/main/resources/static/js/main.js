@@ -1,8 +1,10 @@
 function fncGetMarkList(page, tag) {
 
     const data = {
+        "size": 8,
         "page": page,
-        "tag": tag
+        "tag": tag,
+        "useYn": "Y"
     };
 
     const response = fncAjax("/mark/get.do", data)

@@ -2,6 +2,7 @@ package com.ryums.bookmark.controller;
 
 import com.ryums.bookmark.dto.TagDTO;
 import com.ryums.bookmark.service.TagService;
+import com.ryums.bookmark.utils.UtilMethod;
 import com.ryums.bookmark.utils.files.StorageService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,11 +16,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class TagController {
 
     private TagService tagService;
+
     private StorageService storageService;
+
+    private UtilMethod utilMethod;
 
     @RequestMapping("/tag/create")
     public ModelAndView createTagPage() {
-        return new ModelAndView("/tag/tagCreate");
+        return new ModelAndView("/tag/tagCreate", utilMethod.setType("tag"));
     }
 
     @RequestMapping("/tag/create.do")

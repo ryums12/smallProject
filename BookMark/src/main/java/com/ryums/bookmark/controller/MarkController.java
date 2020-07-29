@@ -2,7 +2,7 @@ package com.ryums.bookmark.controller;
 
 import com.ryums.bookmark.dto.MarkDTO;
 import com.ryums.bookmark.service.MarkService;
-import com.ryums.bookmark.service.TagService;
+import com.ryums.bookmark.utils.UtilMethod;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,11 +18,12 @@ import java.util.Map;
 public class MarkController {
 
     private MarkService markService;
-    private TagService tagService;
+
+    private UtilMethod utilMethod;
 
     @RequestMapping("/")
     public ModelAndView index() {
-        return new ModelAndView("index");
+        return new ModelAndView("index", utilMethod.setType("main"));
     }
 
     @ResponseBody
@@ -33,7 +34,7 @@ public class MarkController {
 
     @RequestMapping("/mark/create")
     public ModelAndView createMarkPage() {
-        return new ModelAndView("/mark/markCreate", tagService.getTagList());
+        return new ModelAndView("/mark/markCreate", markService.setMarkCreatePage());
     }
 
     @RequestMapping("/mark/create.do")

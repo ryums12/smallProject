@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -17,6 +16,7 @@ import java.util.List;
 public class TagService {
 
     private TagRepository tagRepository;
+
     private ModelMapper modelMapper;
 
     @Transactional
@@ -31,15 +31,12 @@ public class TagService {
     }
 
     @Transactional
-    public ModelMap getTagList() {
-
-        ModelMap modelMap = new ModelMap();
+    public List<TagDTO> getTagList() {
 
         List<TagEntity> entityTagList = tagRepository.findAll();
         List<TagDTO> tagList = modelMapper
                 .map(entityTagList, new TypeToken<List<TagDTO>>() {}.getType());
-        modelMap.put("tagList", tagList);
 
-        return modelMap;
+        return tagList;
     };
 }

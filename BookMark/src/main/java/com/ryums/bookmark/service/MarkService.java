@@ -3,6 +3,7 @@ package com.ryums.bookmark.service;
 import com.ryums.bookmark.domain.entity.MarkEntity;
 import com.ryums.bookmark.domain.repository.MarkRepository;
 import com.ryums.bookmark.dto.MarkDTO;
+import com.ryums.bookmark.utils.UtilMethod;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -22,8 +23,21 @@ import java.util.Map;
 public class MarkService {
 
     private MarkRepository markRepository;
+
     private TagService tagService;
+
     private ModelMapper modelMapper;
+
+    private UtilMethod utilMethod;
+
+    @Transactional
+    public ModelMap setMarkCreatePage() {
+
+        ModelMap modelMap = utilMethod.setType("mark");
+        modelMap.put("tagList", tagService.getTagList());
+
+        return modelMap;
+    }
 
     @Transactional
     public void createMark(MarkDTO markDTO) {
@@ -34,11 +48,15 @@ public class MarkService {
     public Map<String, Object> getMarkListData(Map<String, Object> param) {
 
         Map<String, Object> dataMap = new HashMap<>();
-        int page = Integer.parseInt((String) param.get("page"));
-        String tag = (String) param.get("tag");
-        Pageable pageable = PageRequest.of(page, 8, Sort.by("markIdx").descending());
 
-        List<MarkEntity> entityMarkList = markRepository.findMarkList(tag, "Y", pageable);
+        int page = Integer.parseInt((String) param.get("page"));
+        int size = Integer.parseInt((String) param.get("size"));
+        String tag = (String) param.get("tag");
+        String useYn = (String) param.get("useYn");
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by("markIdx").descending());
+
+        List<MarkEntity> entityMarkList = markRepository.findMarkList(tag, useYn, pageable);
         List<MarkDTO> markList = modelMapper
                 .map(entityMarkList, new TypeToken<List<MarkDTO>>() {}.getType());
 
@@ -47,7 +65,7 @@ public class MarkService {
             markList.get(i).setImgUrl(entityMarkList.get(i).getTagEntity().getImgUrl());
         }
 
-        int listSize = markRepository.getMarkCount(tag, "Y");
+        int listSize = markRepository.getMarkCount(tag, useYn);
 
         dataMap.put("markList", markList);
         dataMap.put("size", listSize);
@@ -58,10 +76,12 @@ public class MarkService {
     @Transactional
     public ModelMap getMarkDetail(Long markIdx) {
 
-        ModelMap modelMap = tagService.getTagList();
+        ModelMap modelMap = new ModelMap();
         MarkEntity markEntity = markRepository.findAllByMarkIdx(markIdx);
         MarkDTO markDTO = modelMapper.map(markEntity, MarkDTO.class);
+
         modelMap.put("mark", markDTO);
+        modelMap.put("tagList", tagService.getTagList());
 
         return modelMap;
     }
