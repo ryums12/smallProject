@@ -1,11 +1,13 @@
 window.onload = () => {
 
     const main = document.getElementById('main');
+    const unusedList = document.getElementById('unused-list');
 
-    if(main) {
-        fncGetMarkList(0,"");
+    if (main) {
+        fncGetMarkList(0, "");
+    } else if (unusedList) {
+        fncGetUnusedMarkList(0, "");
     }
-
 };
 
 function fncAjax(url, data, fnc) {
@@ -32,3 +34,34 @@ function fncAjax(url, data, fnc) {
 function fncPreventInput(dom) {
     dom.onkeydown = e => e.preventDefault();
 };
+
+function fncGetPagination(listSize, size, page) {
+
+    const maxPage   = listSize % size == 0 ? parseInt(listSize / size) : parseInt(listSize / size + 1)
+        , startPage = parseInt(page / size) * 10
+        , endPage   = startPage + 9 < maxPage ? startPage + 9 : maxPage;
+
+    const data = {
+        "maxPage"   : maxPage,
+        "startPage" : startPage,
+        "endPage"   : endPage
+    };
+
+    return data;
+}
+
+function fncGoToPrevPage(page, tag, fnc) {
+    if (page == 0) {
+        alert("첫 번째 페이지입니다.");
+    } else {
+        fnc(page - 1, tag);
+    }
+}
+
+function fncGoToNextPage(page, maxPage, tag, fnc) {
+    if ((page + 1) == maxPage) {
+        alert("마지막 페이지입니다.");
+    } else {
+        fnc(page + 1, tag);
+    }
+}

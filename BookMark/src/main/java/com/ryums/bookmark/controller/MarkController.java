@@ -37,7 +37,7 @@ public class MarkController {
         return new ModelAndView("/mark/markCreate", markService.setMarkCreatePage());
     }
 
-    @RequestMapping("/mark/create.do")
+    @RequestMapping("/mark/save.do")
     public String createMark(MarkDTO markDTO) {
         markService.createMark(markDTO);
         return "redirect:/";

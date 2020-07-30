@@ -26,7 +26,7 @@ public class TagController {
         return new ModelAndView("/tag/tagCreate", utilMethod.setType("tag"));
     }
 
-    @RequestMapping("/tag/create.do")
+    @RequestMapping("/tag/save.do")
     public String createTag(TagDTO tagDTO, MultipartHttpServletRequest request) {
         String fileName = tagService.createTag(tagDTO);
         MultipartFile file = request.getFile("tagImg");

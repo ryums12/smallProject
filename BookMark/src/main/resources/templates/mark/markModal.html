@@ -10,7 +10,7 @@
 <div class="modal-body">
     <div class="card form-box">
         <div class="card-body">
-            <form method="post" th:action="@{'/mark/create.do'}"
+            <form method="post" th:action="@{'/mark/save.do'}"
                   onsubmit="return confirm('수정 하시겠습니까?')">
                 <input type="hidden" th:value="*{mark.markIdx}" name="markIdx">
                 <div class="form-group">

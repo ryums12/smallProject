@@ -1,10 +1,10 @@
 function fncGetMarkList(page, tag) {
 
     const data = {
-        "size": 8,
-        "page": page,
-        "tag": tag,
-        "useYn": "Y"
+        "size"  : 8,
+        "page"  : page,
+        "tag"   : tag,
+        "useYn" : "Y"
     };
 
     fncAjax("/mark/get.do", data, fncSetMarkList);
@@ -12,17 +12,20 @@ function fncGetMarkList(page, tag) {
 
 function fncSetMarkList(data, response) {
 
-    const markList = response.markList
-        , listSize = response.size
-        , container = document.getElementById('mark-list-container')
-        , pagination = document.getElementById('pagination')
-        , page = data.page
-        , tag = data.tag;
+    const markList      = response.markList
+        , listSize      = response.size
+        , container     = document.getElementById('mark-list-container')
+        , pagination    = document.getElementById('pagination')
+        , size          = data.size
+        , page          = data.page
+        , tag           = data.tag;
 
-    container.innerHTML = "";
-    pagination.innerHTML = "";
     let listHtml = "<div class='row mt-4'>";
     let pageHtml = '';
+    
+    //dom 초기화
+    container.innerHTML     = "";
+    pagination.innerHTML    = "";
 
     //목록 innerHtml
     for (let i = 0; i < markList.length; i++) {
@@ -57,14 +60,15 @@ function fncSetMarkList(data, response) {
     container.innerHTML = listHtml;
 
     //검색 결과가 한 페이지 이상일 경우
-    if (listSize > 8) {
-        const maxPage = listSize % 8 == 0 ? parseInt(listSize / 8) : parseInt(listSize / 8 + 1)
-            , startPage = parseInt(page / 10) * 10
-            , endPage = startPage + 9 < maxPage ? startPage + 9 : maxPage;
+    if (listSize > size) {
+        const paginationData = fncGetPagination(listSize, size, page)
+            , maxPage = paginationData.maxPage
+            , startPage = paginationData.startPage
+            , endPage = paginationData.endPage;
 
         pageHtml += "<li class='page-item'>"
                         + "<a class='page-link' href='#'"
-                           + "onclick='fncGoToPrevMarkPage(" + page + ",\"" + tag + "\")'>Previous</a>"
+                           + "onclick='fncGoToPrevPage(" + page + ",\"" + tag + "\"," + fncGetMarkList +")'>Previous</a>"
                   + "</li>";
 
         for (let i = startPage; i < endPage; i++) {
@@ -79,7 +83,7 @@ function fncSetMarkList(data, response) {
 
         pageHtml += "<li class='page-item'>"
                         + "<a class='page-link' href='#' "
-                           + "onclick='fncGoToNextMarkPage(" + page + "," + maxPage + ",\"" + tag + "\")'>Next"
+                           + "onclick='fncGoToNextPage(" + page + "," + maxPage + ",\"" + tag + "\"," + fncGetMarkList +")'>Next"
                         + "</a>"
                   + "</li>";
 
@@ -90,16 +94,6 @@ function fncSetMarkList(data, response) {
 function fncGoToMarkLink(dom) {
     const url = dom.dataset.url;
     window.open(url, "_blank");
-}
-
-function fncGoToPrevMarkPage(page, tag) {
-    if (page == 0) alert("첫 번째 페이지입니다.");
-    else fncGetMarkList(page - 1, tag);
-}
-
-function fncGoToNextMarkPage(page, maxPage, tag) {
-    if ((page + 1) == maxPage) alert("마지막 페이지입니다.");
-    else fncGetMarkList(page + 1, tag);
 }
 
 function fncOpenUpdateMarkModal(dom) {
