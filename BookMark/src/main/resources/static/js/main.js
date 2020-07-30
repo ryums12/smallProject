@@ -31,22 +31,25 @@ function fncSetMarkList(data, response) {
         listHtml = i == 4 ? listHtml + "<div class='row mt-4'>" : listHtml;
 
         listHtml += "<div class='col-md-3 mt-4'>"
-            + "<div class='card'>"
-            + "<img src='" + markList[i].imgUrl + "' class='custom-thumbnail'>"
-            + "<hr>"
-            + "<div class='caption text-center'>"
-            + "<h6>[" + markList[i].tagName + "]" + markList[i].markTitle + "</h6>"
-            + "<button class='btn btn-primary' "
-            + "data-url='" + markList[i].markUrl + "'"
-            + "onclick='fncGoToMarkLink(this)'>이동</button>"
-            + "<button class='btn btn-success'"
-            + "data-toggle='modal'"
-            + "data-remote='/mark/"+ markList[i].markIdx + "'"
-            + "data-target='#modal-update-mark'"
-            + "onclick='fncOpenUpdateMarkModal(this)'>수정</button>"
-            + "</div>"
-            + "</div>"
-            + "</div>";
+                        + "<div class='card'>"
+                            + "<img src='" + markList[i].imgUrl + "' class='custom-thumbnail'>"
+                            + "<hr>"
+                            + "<div class='caption text-center'>"
+                                //제목
+                                + "<h6>[" + markList[i].tagName + "]" + markList[i].markTitle + "</h6>"
+                                //이동 버튼
+                                + "<button class='btn btn-primary' "
+                                + "data-url='" + markList[i].markUrl + "'"
+                                + "onclick='fncGoToMarkLink(this)'>이동</button>"
+                                //수정 버튼
+                                + "<button class='btn btn-success'"
+                                + "data-toggle='modal'"
+                                + "data-remote='/mark/"+ markList[i].markIdx + "'"
+                                + "data-target='#modal-update-mark'"
+                                + "onclick='fncOpenUpdateMarkModal(this)'>수정</button>"
+                            + "</div>"
+                        + "</div>"
+                     + "</div>";
 
         //row 닫기
         listHtml = i == 3 || i == 7 ? listHtml + "</div>" : listHtml;
@@ -60,25 +63,25 @@ function fncSetMarkList(data, response) {
             , endPage = startPage + 9 < maxPage ? startPage + 9 : maxPage;
 
         pageHtml += "<li class='page-item'>"
-            + "<a class='page-link' href='#' "
-            + "onclick='fncGoToPrevMarkPage(" + page + ",\"" + tag + "\")'>Previous</a>"
-            + "</li>";
+                        + "<a class='page-link' href='#'"
+                           + "onclick='fncGoToPrevMarkPage(" + page + ",\"" + tag + "\")'>Previous</a>"
+                  + "</li>";
 
         for (let i = startPage; i < endPage; i++) {
             //JPA Pageable 페이지는 0부터 시작하기 때문에, 표시 상으로는 +1이 필요함
             const aClass = page == i ? "page-item active" : "page-item";
             pageHtml += "<li class='" + aClass + "'>"
-                + "<a href='#' class='page-link'"
-                + "onclick='fncGetMarkList(" + i + ",\"" + tag + "\")'>" + (i + 1)
-                + "</a>"
-                + "</li>";
+                            + "<a href='#' class='page-link'"
+                               + "onclick='fncGetMarkList(" + i + ",\"" + tag + "\")'>" + (i + 1)
+                            + "</a>"
+                      + "</li>";
         }
 
         pageHtml += "<li class='page-item'>"
-            + "<a class='page-link' href='#' "
-            + "onclick='fncGoToNextMarkPage(" + page + "," + maxPage + ",\"" + tag + "\")'>Next"
-            + "</a>"
-            + "</li>";
+                        + "<a class='page-link' href='#' "
+                           + "onclick='fncGoToNextMarkPage(" + page + "," + maxPage + ",\"" + tag + "\")'>Next"
+                        + "</a>"
+                  + "</li>";
 
         pagination.innerHTML = pageHtml;
     }
