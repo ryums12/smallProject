@@ -1,6 +1,14 @@
-function fncAjax(url, data) {
+window.onload = () => {
 
-    let result = '';
+    const main = document.getElementById('main');
+
+    if(main) {
+        fncGetMarkList(0,"");
+    }
+
+};
+
+function fncAjax(url, data, fnc) {
 
     $.ajax({
         type: "GET"				    //"POST", "GET"
@@ -15,11 +23,10 @@ function fncAjax(url, data) {
             alert("통신 오류가 발생 하였습니다. 잠시 후 다시 시도해 주세요");
         }
         , success: (response) => {
-            result = response;
+            fnc(data, response);
         }
     });
 
-    return result;
 }
 
 function fncPreventInput(dom) {

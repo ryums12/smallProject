@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <th:block th:replace="fragments/commonHead :: head"></th:block>
+    <meta charset="UTF-8">
+    <title>북마크 관리자</title>
+</head>
+<body>
+    <th:block th:replace="fragments/commonNav :: nav"></th:block>
+
+    <!-- main -->
+    <div class="wrapper mb-m-125px">
+        <th:block layout:fragment="content"></th:block>
+    </div>
+
+    <!-- pagination -->
+    <div class="container-fluid h-75px position-relative">
+        <nav aria-label="pagination" class="custom-center">
+            <ul class="pagination pagination-sm mt-3 font-weight-bold" id="pagination">
+                <!-- set pagination by js -->
+                <li class="page-item"><a href="" class="page-link">Previous</a></li>
+                <li class="page-item active"><a href="" class="page-link">1</a></li>
+                <li class="page-item"><a href="" class="page-link">2</a></li>
+                <li class="page-item"><a href="" class="page-link">3</a></li>
+                <li class="page-item"><a href="" class="page-link">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <th:block th:replace="fragments/commonFooter :: footer"></th:block>
+    <th:block th:replace="fragments/commonJs :: js"></th:block>
+</body>
+</html>
