@@ -46,19 +46,19 @@ function fncGetUnusedMarkList(page, tag) {
 
 function fncSetUnusedMarkList(data, response) {
 
-    let tableInnerHtml = '', pageInnerHtml = '';
-
     const unusedMarkList    = response.markList
         , listSize          = response.size
         , unusedListTable   = document.getElementById('unused-list-table')
         , pagination        = document.getElementById('pagination')
-        , size              = data.size
-        , page              = data.page
-        , tag               = data.tag;
+        , size              = data.size;
 
+    let tableInnerHtml = '';
+
+    //dom 초기화
     unusedListTable.innerHTML = '';
     pagination.innerHTML = '';
 
+    //목록 innerHtml
     for(let i = 0; i < unusedMarkList.length; i++) {
         tableInnerHtml += "<tr>"
                             + "<td class='align-middle'>" + unusedMarkList[i].tagName +"</td>"
@@ -72,34 +72,9 @@ function fncSetUnusedMarkList(data, response) {
 
     unusedListTable.innerHTML = tableInnerHtml;
 
+    //검색 결과가 한 페이지 이상일 경우
     if (listSize > size) {
-        const paginationData    = fncGetPagination(listSize, size, page)
-            , maxPage           = paginationData.maxPage
-            , startPage         = paginationData.startPage
-            , endPage           = paginationData.endPage;
-
-        pageInnerHtml += "<li class='page-item'>"
-                            + "<a class='page-link' href='#'"
-                               + "onclick='fncGoToPrevPage(" + page + ",\"" + tag + "\"," + fncGetUnusedMarkList + ")'>Previous</a>"
-                       + "</li>";
-
-        for (let i = startPage; i < endPage; i++) {
-            //JPA Pageable 페이지는 0부터 시작하기 때문에, 표시 상으로는 +1이 필요함
-            const aClass = page == i ? "page-item active" : "page-item";
-            pageInnerHtml += "<li class='" + aClass + "'>"
-                                + "<a href='#' class='page-link'"
-                                   + "onclick='fncGetUnusedMarkList(" + i + ",\"" + tag + "\")'>" + (i + 1)
-                                + "</a>"
-                           + "</li>";
-        }
-
-        pageInnerHtml += "<li class='page-item'>"
-                            + "<a class='page-link' href='#' "
-                               + "onclick='fncGoToNextPage(" + page + "," + maxPage + ",\"" + tag + "\"," + fncGetUnusedMarkList +")'>Next"
-                            + "</a>"
-                       + "</li>";
-
-        pagination.innerHTML = pageInnerHtml;
+        fncSetPagination(listSize, data, fncGetUnusedMarkList);
     }
 }
 

@@ -3,6 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/page">
 
 <th:block layout:fragment="content">
+    <!-- main -->
     <div role="main" class="container-fluid" id="main">
         <div class="container-fluid">
             <input class="form-control w-100" type="text" placeholder="Search Tag" aria-label="Search"
@@ -15,6 +16,15 @@
         <!-- list -->
     </div>
     <div class="push h-125px"></div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-update-mark" tabindex="-1" role="dialog"
+         aria-labelledby="modal-update-mark">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
 
     <script src='/js/util.js'></script>
     <script src='/js/main.js'></script>

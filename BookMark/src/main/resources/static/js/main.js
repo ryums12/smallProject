@@ -16,12 +16,9 @@ function fncSetMarkList(data, response) {
         , listSize      = response.size
         , container     = document.getElementById('mark-list-container')
         , pagination    = document.getElementById('pagination')
-        , size          = data.size
-        , page          = data.page
-        , tag           = data.tag;
+        , size          = data.size;
 
     let listHtml = "<div class='row mt-4'>";
-    let pageHtml = '';
     
     //dom 초기화
     container.innerHTML     = "";
@@ -57,37 +54,12 @@ function fncSetMarkList(data, response) {
         //row 닫기
         listHtml = i == 3 || i == 7 ? listHtml + "</div>" : listHtml;
     }
+
     container.innerHTML = listHtml;
 
     //검색 결과가 한 페이지 이상일 경우
     if (listSize > size) {
-        const paginationData = fncGetPagination(listSize, size, page)
-            , maxPage = paginationData.maxPage
-            , startPage = paginationData.startPage
-            , endPage = paginationData.endPage;
-
-        pageHtml += "<li class='page-item'>"
-                        + "<a class='page-link' href='#'"
-                           + "onclick='fncGoToPrevPage(" + page + ",\"" + tag + "\"," + fncGetMarkList +")'>Previous</a>"
-                  + "</li>";
-
-        for (let i = startPage; i < endPage; i++) {
-            //JPA Pageable 페이지는 0부터 시작하기 때문에, 표시 상으로는 +1이 필요함
-            const aClass = page == i ? "page-item active" : "page-item";
-            pageHtml += "<li class='" + aClass + "'>"
-                            + "<a href='#' class='page-link'"
-                               + "onclick='fncGetMarkList(" + i + ",\"" + tag + "\")'>" + (i + 1)
-                            + "</a>"
-                      + "</li>";
-        }
-
-        pageHtml += "<li class='page-item'>"
-                        + "<a class='page-link' href='#' "
-                           + "onclick='fncGoToNextPage(" + page + "," + maxPage + ",\"" + tag + "\"," + fncGetMarkList +")'>Next"
-                        + "</a>"
-                  + "</li>";
-
-        pagination.innerHTML = pageHtml;
+        fncSetPagination(listSize, data, fncGetMarkList);
     }
 }
 

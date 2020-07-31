@@ -35,19 +35,40 @@ function fncPreventInput(dom) {
     dom.onkeydown = e => e.preventDefault();
 };
 
-function fncGetPagination(listSize, size, page) {
+function fncSetPagination(listSize, data, fnc) {
 
-    const maxPage   = listSize % size == 0 ? parseInt(listSize / size) : parseInt(listSize / size + 1)
+    const size      = data.size
+        , page      = data.page
+        , tag       = data.tag
+        , maxPage   = listSize % size == 0 ? parseInt(listSize / size) : parseInt(listSize / size + 1)
         , startPage = parseInt(page / size) * 10
-        , endPage   = startPage + 9 < maxPage ? startPage + 9 : maxPage;
+        , endPage   = startPage + 9 < maxPage ? startPage + 9 : maxPage
+        , pagination = document.getElementById('pagination');
 
-    const data = {
-        "maxPage"   : maxPage,
-        "startPage" : startPage,
-        "endPage"   : endPage
-    };
+    let pageInnerHtml = '';
 
-    return data;
+    pageInnerHtml += "<li class='page-item'>"
+        + "<a class='page-link' href='#'"
+        + "onclick='fncGoToPrevPage(" + page + ",\"" + tag + "\"," + fnc + ")'>Previous</a>"
+        + "</li>";
+
+    for (let i = startPage; i < endPage; i++) {
+        //JPA Pageable 페이지는 0부터 시작하기 때문에, 표시 상으로는 +1이 필요함
+        const aClass = page == i ? "page-item active" : "page-item";
+        pageInnerHtml += "<li class='" + aClass + "'>"
+            + "<a href='#' class='page-link'"
+            + "onclick='" + fnc.name + "(" + i + ",\"" + tag + "\")'>" + (i + 1)
+            + "</a>"
+            + "</li>";
+    }
+
+    pageInnerHtml += "<li class='page-item'>"
+        + "<a class='page-link' href='#' "
+        + "onclick='fncGoToNextPage(" + page + "," + maxPage + ",\"" + tag + "\"," + fnc +")'>Next"
+        + "</a>"
+        + "</li>";
+
+    pagination.innerHTML = pageInnerHtml;
 }
 
 function fncGoToPrevPage(page, tag, fnc) {
