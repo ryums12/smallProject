@@ -92,8 +92,17 @@ function fncSetMarkToUsable(markObj) {
         formData.append("markUrl", markObj.markUrl);
         formData.append("useYn", "Y");
 
-        xhr.open("POST", "/mark/save.do");
+        xhr.open("POST", "/mark/save.do", false);
         xhr.setRequestHeader("X-CSRF-Token", csrf);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState == 4 & xhr.status == 200) {
+                alert("수정 되었습니다");
+                window.location.href = "/";
+            } else {
+                alert("진행 중 오류가 발생했습니다.")
+                window.location.reload();
+            }
+        };
         xhr.send(formData);
     }
 }
