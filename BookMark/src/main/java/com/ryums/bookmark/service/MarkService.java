@@ -24,7 +24,7 @@ public class MarkService {
 
     private MarkRepository markRepository;
 
-    private TagService tagService;
+//    private TagService tagService;
 
     private ModelMapper modelMapper;
 
@@ -34,7 +34,7 @@ public class MarkService {
     public ModelMap setMarkCreatePage() {
 
         ModelMap modelMap = utilMethod.setType("mark");
-        modelMap.put("tagList", tagService.getTagList());
+//        modelMap.put("tagList", tagService.getTagList());
 
         return modelMap;
     }
@@ -54,15 +54,15 @@ public class MarkService {
         String tag = (String) param.get("tag");
         String useYn = (String) param.get("useYn");
 
-        Pageable pageable = PageRequest.of(page, size, Sort.by("markIdx").descending());
+        Pageable pageable = PageRequest.of(page, size, Sort.by("chgDt").descending());
 
-        List<MarkEntity> entityMarkList = markRepository.findMarkList(tag, useYn, pageable);
+        List<MarkEntity> markEntityList = markRepository.findMarkList(tag, useYn, pageable);
         List<MarkDTO> markList = modelMapper
-                .map(entityMarkList, new TypeToken<List<MarkDTO>>() {}.getType());
+                .map(markEntityList, new TypeToken<List<MarkDTO>>() {}.getType());
 
-        for(int i = 0; i < entityMarkList.size(); i++) {
-            markList.get(i).setTagName(entityMarkList.get(i).getTagEntity().getTagName());
-            markList.get(i).setImgUrl(entityMarkList.get(i).getTagEntity().getImgUrl());
+        for(int i = 0; i < markEntityList.size(); i++) {
+            markList.get(i).setTagName(markEntityList.get(i).getTagEntity().getTagName());
+            markList.get(i).setImgUrl(markEntityList.get(i).getTagEntity().getImgUrl());
         }
 
         int listSize = markRepository.getMarkCount(tag, useYn);
@@ -81,7 +81,7 @@ public class MarkService {
         MarkDTO markDTO = modelMapper.map(markEntity, MarkDTO.class);
 
         modelMap.put("mark", markDTO);
-        modelMap.put("tagList", tagService.getTagList());
+//        modelMap.put("tagList", tagService.getTagList());
 
         return modelMap;
     }

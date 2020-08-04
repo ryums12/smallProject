@@ -35,15 +35,14 @@ function fncPreventInput(dom) {
     dom.onkeydown = e => e.preventDefault();
 };
 
-function fncSetPagination(listSize, data, fnc) {
+function fncSetPagination(listSize, data, pagination, fnc) {
 
     const size      = data.size
         , page      = data.page
         , tag       = data.tag
         , maxPage   = listSize % size == 0 ? parseInt(listSize / size) : parseInt(listSize / size + 1)
         , startPage = parseInt(page / size) * 10
-        , endPage   = startPage + 9 < maxPage ? startPage + 9 : maxPage
-        , pagination = document.getElementById('pagination');
+        , endPage   = startPage + 9 < maxPage ? startPage + 9 : maxPage;
 
     let pageInnerHtml = '';
 
@@ -53,7 +52,6 @@ function fncSetPagination(listSize, data, fnc) {
         + "</li>";
 
     for (let i = startPage; i < endPage; i++) {
-        //JPA Pageable 페이지는 0부터 시작하기 때문에, 표시 상으로는 +1이 필요함
         const aClass = page == i ? "page-item active" : "page-item";
         pageInnerHtml += "<li class='" + aClass + "'>"
             + "<a href='#' class='page-link'"

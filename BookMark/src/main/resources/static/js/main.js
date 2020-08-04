@@ -19,8 +19,7 @@ function fncSetMarkList(data, response) {
         , size          = data.size;
 
     let listHtml = "<div class='row mt-4'>";
-    
-    //dom 초기화
+
     container.innerHTML     = "";
     pagination.innerHTML    = "";
 
@@ -35,13 +34,10 @@ function fncSetMarkList(data, response) {
                             + "<img src='" + markList[i].imgUrl + "' class='custom-thumbnail'>"
                             + "<hr>"
                             + "<div class='caption text-center'>"
-                                //제목
                                 + "<h6>[" + markList[i].tagName + "]" + markList[i].markTitle + "</h6>"
-                                //이동 버튼
                                 + "<button class='btn btn-primary' "
                                 + "data-url='" + markList[i].markUrl + "'"
                                 + "onclick='fncGoToMarkLink(this)'>이동</button>"
-                                //수정 버튼
                                 + "<button class='btn btn-success'"
                                 + "data-toggle='modal'"
                                 + "data-remote='/mark/"+ markList[i].markIdx + "'"
@@ -59,7 +55,7 @@ function fncSetMarkList(data, response) {
 
     //검색 결과가 한 페이지 이상일 경우
     if (listSize > size) {
-        fncSetPagination(listSize, data, fncGetMarkList);
+        fncSetPagination(listSize, data, pagination, fncGetMarkList);
     }
 }
 
