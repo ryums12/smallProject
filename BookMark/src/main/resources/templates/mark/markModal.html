@@ -10,7 +10,7 @@
 <div class="modal-body">
     <div class="card form-box">
         <div class="card-body">
-            <form method="post" th:action="@{'/mark/save.do'}"
+            <form role="form" method="post" th:action="@{'/mark/save.do'}"
                   onsubmit="return confirm('수정 하시겠습니까?')">
                 <input type="hidden" th:value="*{mark.markIdx}" name="markIdx">
                 <div class="form-group">
@@ -25,11 +25,11 @@
                                class="form-control" id="tag-name"
                                onfocus="fncPreventInput(this)"
                                th:value="${mark.tagName}">
-                        <input type="hidden" name="tagIdx" id="tag-idx">
+                        <input type="hidden" name="tagIdx" id="tag-idx" th:value="${mark.tagIdx}">
                         <div class="input-group-append">
                             <button type="button"
                                     data-toggle="modal" data-target="#modal-search-tag"
-                                    class="btn btn-primary"
+                                    class="btn btn-success"
                                     onclick="fncGetTagList(0, '');">검색</button>
                         </div>
                     </div>

@@ -8,11 +8,11 @@
     <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
     <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
     <meta charset="UTF-8">
+    <th:block th:replace="fragments/commonCss :: css"></th:block>
     <title>북마크 관리자</title>
 </head>
 <body>
     <th:block th:replace="fragments/commonHead :: head"></th:block>
-    <th:block th:replace="fragments/commonNav :: nav"></th:block>
 
     <!-- main -->
     <div class="wrapper mb-m-50px">

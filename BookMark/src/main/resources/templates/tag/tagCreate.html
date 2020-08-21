@@ -4,12 +4,12 @@
 
 <th:block layout:fragment="content">
     <div class="container">
-        <form th:action="@{'/tag/save.do'}" method="post" enctype="multipart/form-data">
-            <h1 class="text-center font-weight-bold">CREATE TAG</h1>
+        <form role="form" th:action="@{'/tag/save.do'}" method="post" enctype="multipart/form-data">
+            <h1 class="font-weight-bold">CREATE TAG</h1>
             <hr>
             <div class="form-group">
                 <label for="inputTagName">Tag Name</label>
-                <input type="text" class="form-control form-control-lg" id="inputTagName" name="tagName"
+                <input type="text" class="form-control" id="inputTagName" name="tagName"
                        placeholder="html, css, database, etc..." required>
             </div>
             <div class="form-group">
@@ -17,8 +17,7 @@
                 <input type="file" class="form-control-file" id="inputTagImg"
                        name="tagImg" required>
             </div>
-            <hr>
-            <button class="btn btn-primary w-100 font-weight-bold">CREATE</button>
+            <button class="btn btn-primary font-weight-bold">CREATE</button>
         </form>
     </div>
 </th:block>

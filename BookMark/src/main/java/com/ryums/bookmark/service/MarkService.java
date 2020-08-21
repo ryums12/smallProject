@@ -81,7 +81,6 @@ public class MarkService {
         MarkDTO markDTO = modelMapper.map(markEntity, MarkDTO.class);
 
         modelMap.put("mark", markDTO);
-//        modelMap.put("tagList", tagService.getTagList());
 
         return modelMap;
     }

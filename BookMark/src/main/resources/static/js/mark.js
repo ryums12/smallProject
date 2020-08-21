@@ -23,12 +23,12 @@ function fncSetTagList(data, response) {
 
     for (let i = 0; i < tagList.length; i++) {
         tableInnerHtml += "<tr>"
-                            + "<td class='align-middle'>"
+                            + "<td class='align-middle' style='width: 50%'>"
                                 + "<span>" + tagList[i].tagName +"</span>"
                                 + "<input type='hidden' value='" + tagList[i].tagIdx + "'>"
                             + "</td>"
-                            + "<td class='align-middle'>"
-                                + "<button class='btn btn-success' "
+                            + "<td class='align-middle' style='width: 50%'>"
+                                + "<button class='btn btn-success'"
                                         + "onclick='fncSetTagToCreateMark(this)'"
                                         + "data-dismiss='modal'>선택</button>"
                             + "</td>"
@@ -105,9 +105,9 @@ function fncSetUnusedMarkList(data, response) {
     //목록 innerHtml
     for (let i = 0; i < unusedMarkList.length; i++) {
         tableInnerHtml += "<tr>"
-                            + "<td class='align-middle'>" + unusedMarkList[i].tagName +"</td>"
-                            + "<td class='align-middle'>" + unusedMarkList[i].markTitle +"</td>"
-                            + "<td>"
+                            + "<td class='align-middle' style='width: 15%'>" + unusedMarkList[i].tagName +"</td>"
+                            + "<td class='align-middle' style='width: 70%'>" + unusedMarkList[i].markTitle +"</td>"
+                            + "<td style='width: 15%'>"
                                 + "<button class='btn btn-success' "
                                         + "onclick='fncSetMarkToUsable(" + JSON.stringify(unusedMarkList[i]) + ")'>사용</button>"
                             + "</td>"
