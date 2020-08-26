@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Alert</title>
+</head>
+<body>
+<script th:inline="javascript">
+    window.onload = () => {
+        const msg       = [[${msg}]],
+              nextPage  = [[${nextPage}]];
+
+        alert(msg);
+
+        if(nextPage != "back") {
+            location.href = nextPage;
+        } else {
+            history.go(-1);
+        }
+    };
+</script>
+</body>

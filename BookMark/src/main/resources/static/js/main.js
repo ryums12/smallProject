@@ -12,11 +12,11 @@ function fncGetMarkList(page, tag) {
 
 function fncSetMarkList(data, response) {
 
-    const markList      = response.markList
-        , listSize      = response.size
-        , container     = document.getElementById('mark-list-container')
-        , pagination    = document.getElementById('pagination')
-        , size          = data.size;
+    const markList      = response.markList,
+          listSize      = response.size,
+          container     = document.getElementById('mark-list-container'),
+          pagination    = document.getElementById('pagination'),
+          size          = data.size;
 
     let listHtml = "<div class='row mt-4'>";
 

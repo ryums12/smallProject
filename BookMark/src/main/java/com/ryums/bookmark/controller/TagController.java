@@ -6,6 +6,9 @@ import com.ryums.bookmark.utils.UtilMethod;
 import com.ryums.bookmark.utils.files.StorageService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
@@ -21,9 +26,7 @@ import java.util.Map;
 public class TagController {
 
     private TagService tagService;
-
     private StorageService storageService;
-
     private UtilMethod utilMethod;
 
     @RequestMapping("/tag/create")
@@ -32,11 +35,35 @@ public class TagController {
     }
 
     @RequestMapping("/tag/save.do")
-    public String createTag(TagDTO tagDTO, MultipartHttpServletRequest request) {
-        String fileName = tagService.createTag(tagDTO);
-        MultipartFile file = request.getFile("tagImg");
-        storageService.store(file, fileName);
-        return "redirect:/mark/create";
+    public void createTag(@Validated TagDTO tagDTO, BindingResult bindingResult,
+                          MultipartHttpServletRequest fileRequest,
+                          HttpServletRequest request, HttpServletResponse response) {
+
+        try {
+            String msg = "";
+            String href = "";
+            
+            if(bindingResult.hasErrors()) {
+                List<ObjectError> errorList = bindingResult.getAllErrors();
+
+                msg = errorList.get(0).getDefaultMessage();
+                href = "back";
+            } else {
+                MultipartFile file = fileRequest.getFile("tagImg");
+                tagDTO = tagService.setTagDTO(tagDTO, file.getName());
+                tagService.createTag(tagDTO);
+                storageService.store(file, tagDTO.getImgName());
+
+                msg = "저장 되었습니다";
+                href = "/";
+            }
+
+            request.setAttribute("msg", msg);
+            request.setAttribute("nextPage", href);
+            request.getRequestDispatcher("/msg").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @ResponseBody

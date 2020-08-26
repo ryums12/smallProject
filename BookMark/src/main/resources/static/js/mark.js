@@ -11,11 +11,11 @@ function fncGetTagList(page ,tag) {
 
 function fncSetTagList(data, response) {
 
-    const tagList       = response.tagList
-        , listSize      = response.size
-        , tagTbody      = document.getElementById('tag-modal-tbody')
-        , pagination    = document.getElementById('modal-pagination')
-        , size          = data.size;
+    const tagList       = response.tagList,
+          listSize      = response.size,
+          tagTbody      = document.getElementById('tag-modal-tbody'),
+          pagination    = document.getElementById('modal-pagination'),
+          size          = data.size;
 
     let tableInnerHtml = "";
     tagTbody.innerHTML = "";
@@ -45,21 +45,21 @@ function fncSetTagList(data, response) {
 
 function fncSetTagToCreateMark(dom) {
 
-    const tagName       = dom.parentElement.parentElement.children[0].children[0].innerHTML
-        , tagIdx        = dom.parentElement.parentElement.children[0].children[1].value
-        , inputTagName  = document.getElementById('tag-name')
-        , hiddenTagIdx  = document.getElementById('tag-idx');
+    const tagName       = dom.parentElement.parentElement.children[0].children[0].innerHTML,
+          tagIdx        = dom.parentElement.parentElement.children[0].children[1].value,
+          inputTagName  = document.getElementById('tag-name'),
+          hiddenTagIdx  = document.getElementById('tag-idx');
 
     inputTagName.value = tagName;
     hiddenTagIdx.value = tagIdx;
-};
+}
 
 function fncCheckMarkValue() {
 
-    const markTitle = document.getElementById('mark-title')
-        , tagName   = document.getElementById('tag-name')
-        , tagIdx    = document.getElementById('tag-idx').value
-        , markUrl   = document.getElementById('mark-url');
+    const markTitle = document.getElementById('mark-title'),
+          tagName   = document.getElementById('tag-name'),
+          tagIdx    = document.getElementById('tag-idx').value,
+          markUrl   = document.getElementById('mark-url');
 
     if (!markTitle.value) {
         alert("마크 제목을 입력해 주십시오.");
@@ -75,7 +75,7 @@ function fncCheckMarkValue() {
     }
 
     return false;
-};
+}
 
 function fncGetUnusedMarkList(page, tag) {
 
@@ -91,11 +91,11 @@ function fncGetUnusedMarkList(page, tag) {
 
 function fncSetUnusedMarkList(data, response) {
 
-    const unusedMarkList    = response.markList
-        , listSize          = response.size
-        , unusedListTable   = document.getElementById('unused-list-table')
-        , pagination        = document.getElementById('pagination')
-        , size              = data.size;
+    const unusedMarkList    = response.markList,
+          listSize          = response.size,
+          unusedListTable   = document.getElementById('unused-list-table'),
+          pagination        = document.getElementById('pagination'),
+          size              = data.size;
 
     let tableInnerHtml = '';
 
@@ -126,9 +126,9 @@ function fncSetMarkToUsable(markObj) {
 
     if (confirm('사용 하시겠습니까?')) {
 
+        const xhr    = new XMLHttpRequest(),
+              csrf   = document.getElementById('_csrf').getAttribute('content');
         let formData = new FormData();
-        const xhr    = new XMLHttpRequest()
-            , csrf   = document.getElementById('_csrf').getAttribute('content');
 
         formData.append("markIdx", markObj.markIdx);
         formData.append("markTitle", markObj.markTitle);

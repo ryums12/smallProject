@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotEmpty;
+
 @Getter
 @Setter
 @ToString
@@ -13,8 +15,10 @@ import lombok.ToString;
 public class TagDTO {
 
     private Long tagIdx;
+    @NotEmpty(message = "태그의 제목을 입력해 주십시오.")
     private String tagName;
     private String imgUrl;
+    private String imgName;
 
     public TagEntity toEntity() {
         TagEntity builder = TagEntity.builder()

@@ -37,34 +37,34 @@ function fncPreventInput(dom) {
 
 function fncSetPagination(listSize, data, pagination, fnc) {
 
-    const size      = data.size
-        , page      = data.page
-        , tag       = data.tag
-        , maxPage   = listSize % size == 0 ? parseInt(listSize / size) : parseInt(listSize / size + 1)
-        , startPage = parseInt(page / size) * 10
-        , endPage   = startPage + 9 < maxPage ? startPage + 9 : maxPage;
+    const size      = data.size,
+          page      = data.page,
+          tag       = data.tag,
+          maxPage   = listSize % size == 0 ? parseInt(listSize / size) : parseInt(listSize / size + 1),
+          startPage = parseInt(page / size) * 10,
+          endPage   = startPage + 9 < maxPage ? startPage + 9 : maxPage;
 
     let pageInnerHtml = '';
 
     pageInnerHtml += "<li class='page-item'>"
-        + "<a class='page-link' href='#'"
-        + "onclick='fncGoToPrevPage(" + page + ",\"" + tag + "\"," + fnc + ")'>Previous</a>"
-        + "</li>";
+                        + "<a class='page-link' href='#' "
+                           + "onclick='fncGoToPrevPage(" + page + ",\"" + tag + "\"," + fnc + ")'>Previous</a>"
+                   + "</li>";
 
     for (let i = startPage; i < endPage; i++) {
         const aClass = page == i ? "page-item active" : "page-item";
         pageInnerHtml += "<li class='" + aClass + "'>"
-            + "<a href='#' class='page-link'"
-            + "onclick='" + fnc.name + "(" + i + ",\"" + tag + "\")'>" + (i + 1)
-            + "</a>"
-            + "</li>";
+                            + "<a href='#' class='page-link' "
+                               + "onclick='" + fnc.name + "(" + i + ",\"" + tag + "\")'>" + (i + 1)
+                            + "</a>"
+                       + "</li>";
     }
 
     pageInnerHtml += "<li class='page-item'>"
-        + "<a class='page-link' href='#' "
-        + "onclick='fncGoToNextPage(" + page + "," + maxPage + ",\"" + tag + "\"," + fnc +")'>Next"
-        + "</a>"
-        + "</li>";
+                        + "<a class='page-link' href='#' "
+                           + "onclick='fncGoToNextPage(" + page + "," + maxPage + ",\"" + tag + "\"," + fnc +")'>Next"
+                        + "</a>"
+                   + "</li>";
 
     pagination.innerHTML = pageInnerHtml;
 }

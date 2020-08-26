@@ -5,12 +5,15 @@ import com.ryums.bookmark.service.MarkService;
 import com.ryums.bookmark.utils.UtilMethod;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Map;
 
 @AllArgsConstructor
@@ -18,7 +21,6 @@ import java.util.Map;
 public class MarkController {
 
     private MarkService markService;
-
     private UtilMethod utilMethod;
 
     @RequestMapping("/")
@@ -38,9 +40,31 @@ public class MarkController {
     }
 
     @RequestMapping("/mark/save.do")
-    public String createMark(MarkDTO markDTO) {
-        markService.createMark(markDTO);
-        return "redirect:/";
+    public void saveMark(@Validated MarkDTO markDTO, BindingResult bindingResult,
+                           HttpServletRequest request, HttpServletResponse response) {
+
+        try {
+            String msg = "";
+            String href = "";
+
+            if (bindingResult.hasErrors()) {
+                List<ObjectError> errorList = bindingResult.getAllErrors();
+
+                msg = errorList.get(0).getDefaultMessage();
+                href = "back";
+            } else {
+                markService.saveMark(markDTO);
+
+                msg = "저장 되었습니다";
+                href = "/";
+            }
+
+            request.setAttribute("msg",msg);
+            request.setAttribute("nextPage", href);
+            request.getRequestDispatcher("/msg").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @RequestMapping("/mark/{markIdx}")

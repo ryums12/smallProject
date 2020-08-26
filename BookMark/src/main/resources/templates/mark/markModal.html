@@ -11,11 +11,11 @@
     <div class="card form-box">
         <div class="card-body">
             <form role="form" method="post" th:action="@{'/mark/save.do'}"
-                  onsubmit="return confirm('수정 하시겠습니까?')">
+                  onsubmit="return fncCheckMarkValue()">
                 <input type="hidden" th:value="*{mark.markIdx}" name="markIdx">
                 <div class="form-group">
                     <label>제목</label>
-                    <input type="text" class="form-control"
+                    <input type="text" class="form-control" id="mark-title"
                            name="markTitle" th:value="${mark.markTitle}">
                 </div>
                 <div class="form-group">
@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <label>링크</label>
-                    <input type="text" class="form-control"
+                    <input type="text" class="form-control" id=""
                            name="markUrl" th:value="${mark.markUrl}">
                 </div>
                 <div class="form-group">

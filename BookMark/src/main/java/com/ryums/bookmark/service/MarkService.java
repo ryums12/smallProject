@@ -23,24 +23,16 @@ import java.util.Map;
 public class MarkService {
 
     private MarkRepository markRepository;
-
-//    private TagService tagService;
-
     private ModelMapper modelMapper;
-
     private UtilMethod utilMethod;
 
     @Transactional
     public ModelMap setMarkCreatePage() {
-
-        ModelMap modelMap = utilMethod.setType("mark");
-//        modelMap.put("tagList", tagService.getTagList());
-
-        return modelMap;
+        return utilMethod.setType("mark");
     }
 
     @Transactional
-    public void createMark(MarkDTO markDTO) {
+    public void saveMark(MarkDTO markDTO) {
         markRepository.save(markDTO.toEntity());
     }
 

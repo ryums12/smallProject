@@ -4,8 +4,8 @@
 
 <th:block layout:fragment="content">
     <div class="container" id="container-mark">
-        <form role="form" th:action="@{'/mark/save.do'}" method="post" onsubmit="return fncCheckMarkValue()">
-            <h1 class="font-weight-bold">CREATE MARK</h1>
+        <form role="form" th:action="@{'/mark/save.do'}" method="post" onsubmit="return fncCheckMarkValue()" id="mark-form">
+            <h1 class="font-weight-bold">Create Mark</h1>
             <hr>
             <div class="form-group">
                 <label for="mark-title">Mark Title</label>

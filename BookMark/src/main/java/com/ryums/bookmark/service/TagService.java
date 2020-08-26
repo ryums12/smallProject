@@ -21,18 +21,22 @@ import java.util.Map;
 public class TagService {
 
     private TagRepository tagRepository;
-
     private ModelMapper modelMapper;
 
-    @Transactional
-    public String createTag(TagDTO tagDTO) {
-
-        String imgName = "tag_" + tagDTO.getTagName();
+    public TagDTO setTagDTO(TagDTO tagDTO, String fileName) {
+        int pos = fileName.lastIndexOf( "." );
+        String ext = fileName.substring( pos + 1 );
+        String imgName = "tag_" + tagDTO.getTagName() + ext;
         String imgUrl = "/files/" + imgName;
         tagDTO.setImgUrl(imgUrl);
-        tagRepository.save(tagDTO.toEntity());
+        tagDTO.setImgName(imgName);
 
-        return imgName;
+        return tagDTO;
+    }
+
+    @Transactional
+    public void createTag(TagDTO tagDTO) {
+        tagRepository.save(tagDTO.toEntity());
     }
 
     @Transactional
@@ -56,13 +60,5 @@ public class TagService {
         dataMap.put("size", listSize);
 
         return dataMap;
-
-//        List<TagEntity> entityTagList = tagRepository.findAll();
-//        List<TagDTO> tagList = modelMapper
-//                .map(entityTagList, new TypeToken<List<TagDTO>>() {}.getType());
-//
-//
-//
-//        return tagList;
-    };
+    }
 }
