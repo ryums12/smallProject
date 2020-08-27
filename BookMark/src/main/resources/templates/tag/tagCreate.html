@@ -6,7 +6,7 @@
     <div class="container">
         <form role="form" th:action="@{'/tag/save.do'}" method="post"
               enctype="multipart/form-data" onsubmit="return confirm('등록 하시겠습니까?')">
-            <h1 class="font-weight-bold">CREATE TAG</h1>
+            <h1 class="font-weight-bold">Create Tag</h1>
             <hr>
             <div class="form-group">
                 <label for="inputTagName">Tag Name</label>
@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label for="inputTagImg">Thumbnail Image</label>
                 <input type="file" class="form-control-file" id="inputTagImg"
-                       name="tagImg" required>
+                       name="tagImg">
             </div>
             <button class="btn btn-primary font-weight-bold">CREATE</button>
         </form>

@@ -24,9 +24,10 @@ public class TagService {
     private ModelMapper modelMapper;
 
     public TagDTO setTagDTO(TagDTO tagDTO, String fileName) {
+
         int pos = fileName.lastIndexOf( "." );
-        String ext = fileName.substring( pos + 1 );
-        String imgName = "tag_" + tagDTO.getTagName() + ext;
+        String ext = fileName.substring( pos + 1, fileName.length());
+        String imgName = "tag_" + tagDTO.getTagName() + "." + ext;
         String imgUrl = "/files/" + imgName;
         tagDTO.setImgUrl(imgUrl);
         tagDTO.setImgName(imgName);

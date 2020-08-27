@@ -29,4 +29,9 @@ public class TagEntity extends TimeEntity{
         this.imgUrl = imgUrl;
     }
 
+    @PrePersist
+    public void prePersist() {
+        this.imgUrl = this.imgUrl == null ? "/images/icons/post.png" : this.imgUrl;
+    }
+
 }

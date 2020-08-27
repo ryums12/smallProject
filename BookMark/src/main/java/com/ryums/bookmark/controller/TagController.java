@@ -50,9 +50,14 @@ public class TagController {
                 href = "back";
             } else {
                 MultipartFile file = fileRequest.getFile("tagImg");
-                tagDTO = tagService.setTagDTO(tagDTO, file.getName());
+                String fileName = file.getOriginalFilename();
+                
+                if(!fileName.equals("")) {
+                    tagDTO = tagService.setTagDTO(tagDTO, fileName);
+                    storageService.store(file, tagDTO.getImgName());
+                }
+
                 tagService.createTag(tagDTO);
-                storageService.store(file, tagDTO.getImgName());
 
                 msg = "저장 되었습니다";
                 href = "/";
