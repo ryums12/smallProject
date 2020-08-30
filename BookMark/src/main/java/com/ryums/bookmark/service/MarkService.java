@@ -44,11 +44,12 @@ public class MarkService {
         int page = Integer.parseInt((String) param.get("page"));
         int size = Integer.parseInt((String) param.get("size"));
         String tag = (String) param.get("tag");
+        String title = (String) param.get("title");
         String useYn = (String) param.get("useYn");
 
         Pageable pageable = PageRequest.of(page, size, Sort.by("chgDt").descending());
 
-        List<MarkEntity> markEntityList = markRepository.findMarkList(tag, useYn, pageable);
+        List<MarkEntity> markEntityList = markRepository.findMarkList(tag, title, useYn, pageable);
         List<MarkDTO> markList = modelMapper
                 .map(markEntityList, new TypeToken<List<MarkDTO>>() {}.getType());
 
@@ -57,7 +58,7 @@ public class MarkService {
             markList.get(i).setImgUrl(markEntityList.get(i).getTagEntity().getImgUrl());
         }
 
-        int listSize = markRepository.getMarkCount(tag, useYn);
+        int listSize = markRepository.getMarkCount(tag, title, useYn);
 
         dataMap.put("markList", markList);
         dataMap.put("size", listSize);

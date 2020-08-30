@@ -1,9 +1,13 @@
-function fncGetMarkList(page, tag) {
+function fncGetMarkList(page) {
+
+    const tag   = document.getElementById('search-tag').value,
+          title = document.getElementById('search-title').value;
 
     const data = {
         "size"  : 8,
         "page"  : page,
         "tag"   : tag,
+        "title" : title,
         "useYn" : "Y"
     };
 

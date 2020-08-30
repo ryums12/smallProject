@@ -6,8 +6,18 @@
     <!-- main -->
     <div role="main" class="container" id="main">
         <div class="container-fluid">
-            <input class="form-control w-100" type="text" placeholder="Search Tag" aria-label="Search"
-                   onkeyup="fncGetMarkList(0, this.value);">
+            <div class="row">
+                <div class="col">
+                    <input class="form-control w-100" id="search-tag" type="text"
+                           placeholder="Search Tag" aria-label="Search"
+                           onkeyup="fncGetMarkList(0);">
+                </div>
+                <div class="col">
+                    <input class="form-control w-100" id="search-title" type="text"
+                           placeholder="Search Title" aria-label="Search"
+                           onkeyup="fncGetMarkList(0);">
+                </div>
+            </div>
         </div>
         <!-- list -->
         <div class="container-fluid" id="mark-list-container">

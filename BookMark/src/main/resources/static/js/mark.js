@@ -77,12 +77,13 @@ function fncCheckMarkValue() {
     return false;
 }
 
-function fncGetUnusedMarkList(page, tag) {
+function fncGetUnusedMarkList(page) {
 
     const data = {
         "size"  : 10,
         "page"  : page,
-        "tag"   : tag,
+        "tag"   : "",
+        "title" : "",
         "useYn" : "N"
     };
 
