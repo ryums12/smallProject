@@ -15,11 +15,6 @@ html, body {
 .mb-m-50px { margin-bottom: -50px; }
 .mb-m-125px { margin-bottom: -125px; }
 
-.custom-thumbnail {
-    height: 140px;
-    width: 100%;
-}
-
 .custom-center {
     position: absolute;
     top: 50%;
