@@ -6,7 +6,7 @@ window.onload = () => {
     if (main) {
         fncGetMarkList(0);
     } else if (unusedList) {
-        fncGetUnusedMarkList(0, "");
+        fncGetUnusedMarkList(0);
     }
 };
 

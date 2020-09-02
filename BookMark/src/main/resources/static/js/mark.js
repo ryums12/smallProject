@@ -96,7 +96,8 @@ function fncSetUnusedMarkList(data, response) {
           listSize          = response.size,
           unusedListTable   = document.getElementById('unused-list-table'),
           pagination        = document.getElementById('pagination'),
-          size              = data.size;
+          size              = data.size,
+          csrf              = document.getElementById('_csrf').getAttribute('content');
 
     let tableInnerHtml = '';
 
@@ -109,8 +110,15 @@ function fncSetUnusedMarkList(data, response) {
                             + "<td class='align-middle' style='width: 15%'>" + unusedMarkList[i].tagName +"</td>"
                             + "<td class='align-middle' style='width: 70%'>" + unusedMarkList[i].markTitle +"</td>"
                             + "<td style='width: 15%'>"
-                                + "<button class='btn btn-success' "
-                                        + "onclick='fncSetMarkToUsable(" + JSON.stringify(unusedMarkList[i]) + ")'>사용</button>"
+                                + "<form action='/mark/save.do' method='post' onsubmit='return confirm(\"사용 하시겠습니까?\")'>"
+                                    + "<input type='hidden' value='" + csrf + "' name='_csrf'>"
+                                    + "<input type='hidden' value='" + unusedMarkList[i].markIdx +"' name='markIdx'>"
+                                    + "<input type='hidden' value='" + unusedMarkList[i].markTitle +"' name='markTitle'>"
+                                    + "<input type='hidden' value='" + unusedMarkList[i].markUrl +"' name='markUrl'>"
+                                    + "<input type='hidden' value='" + unusedMarkList[i].tagIdx +"' name='tagIdx'>"
+                                    + "<input type='hidden' value='Y' name='useYn'>"
+                                    + "<button class='btn btn-success' type='submit'>사용</button>"
+                                + "</form>"
                             + "</td>"
                           +"</tr>";
     }
@@ -120,34 +128,5 @@ function fncSetUnusedMarkList(data, response) {
     //검색 결과가 한 페이지 이상일 경우
     if (listSize > size) {
         fncSetPagination(listSize, data, pagination, fncGetUnusedMarkList);
-    }
-}
-
-function fncSetMarkToUsable(markObj) {
-
-    if (confirm('사용 하시겠습니까?')) {
-
-        const xhr    = new XMLHttpRequest(),
-              csrf   = document.getElementById('_csrf').getAttribute('content');
-        let formData = new FormData();
-
-        formData.append("markIdx", markObj.markIdx);
-        formData.append("markTitle", markObj.markTitle);
-        formData.append("tagIdx", markObj.tagIdx);
-        formData.append("markUrl", markObj.markUrl);
-        formData.append("useYn", "Y");
-
-        xhr.open("POST", "/mark/save.do", false);
-        xhr.setRequestHeader("X-CSRF-Token", csrf);
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState == 4 & xhr.status == 200) {
-                alert("수정 되었습니다");
-                window.location.href = "/";
-            } else {
-                alert("진행 중 오류가 발생했습니다.")
-                window.location.reload();
-            }
-        };
-        xhr.send(formData);
     }
 }
