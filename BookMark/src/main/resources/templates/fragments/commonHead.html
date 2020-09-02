@@ -15,8 +15,14 @@
                 <li class="nav-item" th:classappend="${type.equals('mark')} ? 'active' : ''">
                     <a class="nav-link" href="/mark/create">Create Mark</a>
                 </li>
-                <li class="nav-item" th:classappend="${type.equals('tag')} ? 'active' : ''">
-                    <a class="nav-link" href="/tag/create">Create Tag</a>
+                <li class="nav-item dropdown" th:classappend="${type.equals('tag')} ? 'active' : ''">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tag
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/tag/create">Create Tag</a>
+                        <a class="dropdown-item" href="/tag/list">Update Tag</a>
+                    </div>
                 </li>
                 <li class="nav-item" th:classappend="${type.equals('unused')} ? 'active' : ''">
                     <a class="nav-link" href="/mark/unused">Unused Marks</a>

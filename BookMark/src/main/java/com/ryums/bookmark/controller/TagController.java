@@ -76,4 +76,9 @@ public class TagController {
     public Map<String, Object> getTagList(@RequestParam Map<String, Object> param) {
         return tagService.getTagList(param);
     }
+
+    @RequestMapping("/tag/list")
+    public ModelAndView tagListPage() {
+        return new ModelAndView("/tag/tagList", utilMethod.setType("tag"));
+    }
 }
