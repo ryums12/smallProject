@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -80,5 +81,10 @@ public class TagController {
     @RequestMapping("/tag/list")
     public ModelAndView tagListPage() {
         return new ModelAndView("/tag/tagList", utilMethod.setType("tag"));
+    }
+
+    @RequestMapping("/tag/{tagIdx}")
+    public ModelAndView getTagDetail(@PathVariable("tagIdx") Long tagIdx) {
+        return new ModelAndView("/tag/tagModal", tagService.getTagDetail(tagIdx));
     }
 }

@@ -1,12 +1,15 @@
 window.onload = () => {
 
-    const main = document.getElementById('main');
-    const unusedList = document.getElementById('unused-list');
+    const main       = document.getElementById('main'),
+          unusedList = document.getElementById('unused-list'),
+          tagList    = document.getElementById('tag-list');
 
     if (main) {
         fncGetMarkList(0);
     } else if (unusedList) {
         fncGetUnusedMarkList(0);
+    } else if (tagList) {
+        fncGetTagList(0);
     }
 };
 
@@ -33,13 +36,13 @@ function fncAjax(url, data, fnc) {
 
 function fncPreventInput(dom) {
     dom.onkeydown = e => e.preventDefault();
-};
+}
 
 function fncSetPagination(listSize, data, pagination, fnc) {
 
     const size      = data.size,
           page      = data.page,
-          maxPage   = listSize % size == 0 ? parseInt(listSize / size) : parseInt(listSize / size + 1),
+          maxPage   = listSize % size === 0 ? parseInt(listSize / size) : parseInt(listSize / size + 1),
           startPage = parseInt(page / size) * 10,
           endPage   = startPage + 9 < maxPage ? startPage + 9 : maxPage;
 
@@ -51,7 +54,7 @@ function fncSetPagination(listSize, data, pagination, fnc) {
                    + "</li>";
 
     for (let i = startPage; i < endPage; i++) {
-        const aClass = page == i ? "page-item active" : "page-item";
+        const aClass = page === i ? "page-item active" : "page-item";
         pageInnerHtml += "<li class='" + aClass + "'>"
                             + "<a href='#' class='page-link' "
                                + "onclick='" + fnc.name + "(" + i + ")'>" + (i + 1)
@@ -69,7 +72,7 @@ function fncSetPagination(listSize, data, pagination, fnc) {
 }
 
 function fncGoToPrevPage(page, fnc) {
-    if (page == 0) {
+    if (page === 0) {
         alert("첫 번째 페이지입니다.");
     } else {
         fnc(page - 1);
@@ -77,9 +80,14 @@ function fncGoToPrevPage(page, fnc) {
 }
 
 function fncGoToNextPage(page, maxPage, fnc) {
-    if ((page + 1) == maxPage) {
+    if ((page + 1) === maxPage) {
         alert("마지막 페이지입니다.");
     } else {
         fnc(page + 1);
     }
+}
+
+function fncOpenUpdateMarkModal(dom) {
+    const modal = $(dom).data("target");
+    $(modal).find('.modal-content').load($(dom).data("remote"));
 }

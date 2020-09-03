@@ -12,4 +12,6 @@ public interface TagRepository extends JpaRepository <TagEntity, Long> {
 
     int countAllByTagNameContaining(String tagName);
 
+    TagEntity findAllByTagIdx(Long tagIdx);
+
 }

@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
 
 import javax.transaction.Transactional;
 import java.util.HashMap;
@@ -26,7 +27,7 @@ public class TagService {
     public TagDTO setTagDTO(TagDTO tagDTO, String fileName) {
 
         int pos = fileName.lastIndexOf( "." );
-        String ext = fileName.substring( pos + 1, fileName.length());
+        String ext = fileName.substring(pos + 1);
         String imgName = "tag_" + tagDTO.getTagName() + "." + ext;
         String imgUrl = "/files/" + imgName;
         tagDTO.setImgUrl(imgUrl);
@@ -61,5 +62,17 @@ public class TagService {
         dataMap.put("size", listSize);
 
         return dataMap;
+    }
+
+    @Transactional
+    public ModelMap getTagDetail(Long markIdx) {
+
+        ModelMap modelMap = new ModelMap();
+        TagEntity tagEntity = tagRepository.findAllByTagIdx(markIdx);
+        TagDTO tagDTO = modelMapper.map(tagEntity, TagDTO.class);
+
+        modelMap.put("tag", tagDTO);
+
+        return modelMap;
     }
 }

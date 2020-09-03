@@ -19,23 +19,23 @@
                 <th>수정</th>
             </tr>
             </thead>
-            <tbody id="unused-list-table">
+            <tbody id="tag-list-table">
             <!-- set table by js -->
-                <tr>
-                    <td class="h-50px align-middle">
-                        <img src="/images/icons/post.png" alt="tag thumbnail" class="img-thumbnail h-100">
-                    </td>
-                    <td class="h-50px align-middle">대충 태그 제목</td>
-                    <td class="h-50px align-middle">
-                        <button class="btn btn-success">수정</button>
-                    </td>
-                </tr>
             </tbody>
         </table>
     </div>
 
     <div class="push h-125px"></div>
 
+    <div class="modal fade" id="modal-update-tag" tabindex="-1" role="dialog"
+         aria-labelledby="modal-update-tag">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+
     <script src="/js/util.js"></script>
+    <script src="/js/tag.js"></script>
 </th:block>
 </html>

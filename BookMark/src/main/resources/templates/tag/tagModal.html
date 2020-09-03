@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- Modal -->
+<div class="modal-header">
+    <h5 class="modal-title" id="modal-update-tag-title">태그 수정</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="card form-box">
+        <div class="card-body">
+            <form role="form" method="post" th:action="@{'/tag/save.do'}"
+                  onsubmit="return confirm('수정 하시겠습니까?')">
+                <input type="hidden" th:value="${tag.tagIdx}" name="tagIdx">
+                <div class="form-group">
+                    <label for="tag-name">태그 이름</label>
+                    <input type="text" class="form-control" id="tag-name"
+                           name="tagName" th:value="${tag.tagName}" required>
+                </div>
+                <div class="form-group">
+                    <label>현재 사진</label>
+                    <div class="h-50px">
+                        <input type="image" class="form-control-image h-100" th:src="${tag.imgUrl}" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tag-image">사진 선택</label>
+                    <input type="file" class="form-control-file" id="tag-image" name="tagImg" th:src="${tag.imgUrl}">
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">저장</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</html>

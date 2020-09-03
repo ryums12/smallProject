@@ -12,7 +12,7 @@
         <div class="card-body">
             <form role="form" method="post" th:action="@{'/mark/save.do'}"
                   onsubmit="return fncCheckMarkValue()">
-                <input type="hidden" th:value="*{mark.markIdx}" name="markIdx">
+                <input type="hidden" th:value="${mark.markIdx}" name="markIdx">
                 <div class="form-group">
                     <label>제목</label>
                     <input type="text" class="form-control" id="mark-title"
@@ -30,7 +30,7 @@
                             <button type="button"
                                     data-toggle="modal" data-target="#modal-search-tag"
                                     class="btn btn-success"
-                                    onclick="fncGetTagList(0, '');">검색</button>
+                                    onclick="fncGetSearchTagList(0, '');">검색</button>
                         </div>
                     </div>
                 </div>
