@@ -53,7 +53,7 @@ public class TagController {
                 MultipartFile file = fileRequest.getFile("tagImg");
                 String fileName = file.getOriginalFilename();
                 
-                if(!fileName.equals("")) {
+                if(!fileName.equals("") && !tagDTO.getImgUrl().equals("")) {
                     tagDTO = tagService.setTagDTO(tagDTO, fileName);
                     storageService.store(file, tagDTO.getImgName());
                 }

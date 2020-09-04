@@ -11,8 +11,9 @@
     <div class="card form-box">
         <div class="card-body">
             <form role="form" method="post" th:action="@{'/tag/save.do'}"
-                  onsubmit="return confirm('수정 하시겠습니까?')">
+                  enctype="multipart/form-data" onsubmit="return confirm('수정 하시겠습니까?')">
                 <input type="hidden" th:value="${tag.tagIdx}" name="tagIdx">
+                <input type="hidden" th:value="${tag.imgUrl}" name="imgUrl">
                 <div class="form-group">
                     <label for="tag-name">태그 이름</label>
                     <input type="text" class="form-control" id="tag-name"
