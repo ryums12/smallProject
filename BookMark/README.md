@@ -37,7 +37,7 @@
             
     - 기타 
         - [X] 화면에 넘어가는 데이터 형식을 Entity에서 변경
-        - [ ] JpaRepository 총괄 수정
+        - [X] JpaRepository 총괄 수정
         - [ ] 테스트 코드 작성
  
 - **Good If Do**
