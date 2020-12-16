@@ -1,4 +1,4 @@
-package com.ryums.bookmark.domain.entity;
+package com.ryums.bookmark.entity;
 
 import lombok.Builder;
 import lombok.Getter;

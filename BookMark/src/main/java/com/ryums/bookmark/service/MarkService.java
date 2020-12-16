@@ -1,7 +1,7 @@
 package com.ryums.bookmark.service;
 
-import com.ryums.bookmark.domain.entity.MarkEntity;
-import com.ryums.bookmark.domain.repository.MarkRepository;
+import com.ryums.bookmark.entity.MarkEntity;
+import com.ryums.bookmark.repository.mark.MarkRepository;
 import com.ryums.bookmark.dto.MarkDTO;
 import com.ryums.bookmark.utils.UtilMethod;
 import lombok.AllArgsConstructor;
@@ -58,7 +58,7 @@ public class MarkService {
             markList.get(i).setImgUrl(markEntityList.get(i).getTagEntity().getImgUrl());
         }
 
-        int listSize = markRepository.getMarkCount(tag, title, useYn);
+        long listSize = markRepository.getMarkCount(tag, title, useYn);
 
         dataMap.put("markList", markList);
         dataMap.put("size", listSize);

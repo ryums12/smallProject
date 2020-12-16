@@ -1,7 +1,7 @@
 package com.ryums.bookmark.service;
 
-import com.ryums.bookmark.domain.entity.TagEntity;
-import com.ryums.bookmark.domain.repository.TagRepository;
+import com.ryums.bookmark.entity.TagEntity;
+import com.ryums.bookmark.repository.tag.TagRepository;
 import com.ryums.bookmark.dto.TagDTO;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

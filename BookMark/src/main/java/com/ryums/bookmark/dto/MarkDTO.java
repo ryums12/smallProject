@@ -1,6 +1,6 @@
 package com.ryums.bookmark.dto;
 
-import com.ryums.bookmark.domain.entity.MarkEntity;
+import com.ryums.bookmark.entity.MarkEntity;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;

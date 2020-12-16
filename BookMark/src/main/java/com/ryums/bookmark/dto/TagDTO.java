@@ -1,6 +1,6 @@
 package com.ryums.bookmark.dto;
 
-import com.ryums.bookmark.domain.entity.TagEntity;
+import com.ryums.bookmark.entity.TagEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

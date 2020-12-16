@@ -1,4 +1,4 @@
-package com.ryums.bookmark.domain.entity;
+package com.ryums.bookmark.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

@@ -1,4 +1,4 @@
-package com.ryums.bookmark.domain.entity;
+package com.ryums.bookmark.entity;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -28,7 +28,7 @@ public class MarkEntity extends TimeEntity{
     @Column(name ="use_yn")
     private String useYn;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = TagEntity.class)
     @JoinColumn(name = "tag_idx", insertable = false, updatable = false)
     private TagEntity tagEntity;
 

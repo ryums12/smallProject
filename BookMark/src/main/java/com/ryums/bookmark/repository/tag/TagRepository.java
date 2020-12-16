@@ -1,6 +1,6 @@
-package com.ryums.bookmark.domain.repository;
+package com.ryums.bookmark.repository.tag;
 
-import com.ryums.bookmark.domain.entity.TagEntity;
+import com.ryums.bookmark.entity.TagEntity;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 

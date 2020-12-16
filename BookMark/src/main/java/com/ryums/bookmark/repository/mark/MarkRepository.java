@@ -1,13 +1,19 @@
-package com.ryums.bookmark.domain.repository;
+package com.ryums.bookmark.repository.mark;
 
-import com.ryums.bookmark.domain.entity.MarkEntity;
+import com.ryums.bookmark.entity.MarkEntity;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface MarkRepository extends JpaRepository<MarkEntity, Long> {
+/*
+ * 쿼리 메소드 정의 인터페이스
+ * */
+public interface MarkRepository extends JpaRepository<MarkEntity, Long>
+                                      , MarkRepositoryCustom{
+
+    /* @쿼리 사용 메소드
 
     @Query(value = "select mark from MarkEntity mark "
                  + "where mark.tagEntity.tagName like %?1%"
@@ -20,6 +26,8 @@ public interface MarkRepository extends JpaRepository<MarkEntity, Long> {
                  + "and mark.markTitle like %?2%"
                  + "and mark.useYn = ?3")
     int getMarkCount(String tagName, String markTitle, String useYn);
+
+    */
 
     MarkEntity findAllByMarkIdx(Long markIdx);
 }
