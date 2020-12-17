@@ -1,7 +1,7 @@
 function fncGetMarkList(page) {
 
     const tag   = document.getElementById('search-tag').value,
-        title = document.getElementById('search-title').value;
+          title = document.getElementById('search-title').value;
 
     const data = {
         "size"  : 8,
@@ -11,7 +11,7 @@ function fncGetMarkList(page) {
         "useYn" : "Y"
     };
 
-    fncAjax("/mark/get.do", data, fncSetMarkList);
+    fncAjax("get", "/mark/", data, fncSetMarkList);
 }
 
 function fncSetMarkList(data, response) {
@@ -103,7 +103,7 @@ function fncGetUnusedMarkList(page) {
         "useYn" : "N"
     };
 
-    fncAjax("/mark/get.do", data, fncSetUnusedMarkList);
+    fncAjax("get", "/mark", data, fncSetUnusedMarkList);
 }
 
 function fncSetUnusedMarkList(data, response) {
@@ -126,7 +126,7 @@ function fncSetUnusedMarkList(data, response) {
                             + "<td class='align-middle' style='width: 15%'>" + unusedMarkList[i].tagName +"</td>"
                             + "<td class='align-middle' style='width: 70%'>" + unusedMarkList[i].markTitle +"</td>"
                             + "<td style='width: 15%'>"
-                                + "<form action='/mark/save.do' method='post' onsubmit='return confirm(\"사용 하시겠습니까?\")'>"
+                                + "<form action='/mark' method='post' onsubmit='return confirm(\"사용 하시겠습니까?\")'>"
                                     + "<input type='hidden' value='" + csrf + "' name='_csrf'>"
                                     + "<input type='hidden' value='" + unusedMarkList[i].markIdx +"' name='markIdx'>"
                                     + "<input type='hidden' value='" + unusedMarkList[i].markTitle +"' name='markTitle'>"

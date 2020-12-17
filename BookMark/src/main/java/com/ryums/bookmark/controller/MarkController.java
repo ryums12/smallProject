@@ -29,7 +29,7 @@ public class MarkController {
     }
 
     @ResponseBody
-    @RequestMapping("/mark/get.do")
+    @RequestMapping(value = "/mark", method = RequestMethod.GET)
     public Map<String, Object> getMarkList(@RequestParam Map<String, Object> param) {
         return markService.getMarkListData(param);
     }
@@ -39,7 +39,7 @@ public class MarkController {
         return new ModelAndView("/mark/markCreate", markService.setMarkCreatePage());
     }
 
-    @RequestMapping("/mark/save.do")
+    @RequestMapping(value = "/mark", method = RequestMethod.POST)
     public void saveMark(@Validated MarkDTO markDTO, BindingResult bindingResult,
                            HttpServletRequest request, HttpServletResponse response) {
 
@@ -67,7 +67,7 @@ public class MarkController {
         }
     }
 
-    @RequestMapping("/mark/{markIdx}")
+    @RequestMapping(value = "/mark/{markIdx}", method = RequestMethod.GET)
     public ModelAndView getMarkDetail(@PathVariable("markIdx") Long markIdx) {
         return new ModelAndView("/mark/markModal", markService.getMarkDetail(markIdx));
     }

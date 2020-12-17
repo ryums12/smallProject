@@ -6,7 +6,7 @@ function fncGetSearchTagList(page ,tag) {
         "tag"   : tag
     };
 
-    fncAjax("/tag/get.do", data, fncSetSearchTagList);
+    fncAjax("get","/tag", data, fncSetSearchTagList);
 }
 
 function fncSetSearchTagList(data, response) {
@@ -62,7 +62,7 @@ function fncGetTagList(page) {
         "tag"   : ""
     };
 
-    fncAjax("/tag/get.do", data, fncSetTagList);
+    fncAjax("get", "/tag", data, fncSetTagList);
 }
 
 function fncSetTagList(data, response) {

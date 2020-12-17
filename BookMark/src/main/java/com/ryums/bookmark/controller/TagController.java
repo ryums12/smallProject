@@ -9,10 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,7 +32,7 @@ public class TagController {
         return new ModelAndView("/tag/tagCreate", utilMethod.setType("tag"));
     }
 
-    @RequestMapping("/tag/save.do")
+    @RequestMapping(value = "/tag", method = RequestMethod.POST)
     public void createTag(@Validated TagDTO tagDTO, BindingResult bindingResult,
                           MultipartHttpServletRequest fileRequest,
                           HttpServletRequest request, HttpServletResponse response) {
@@ -73,7 +70,7 @@ public class TagController {
     }
 
     @ResponseBody
-    @RequestMapping("/tag/get.do")
+    @RequestMapping(value = "/tag",method = RequestMethod.GET)
     public Map<String, Object> getTagList(@RequestParam Map<String, Object> param) {
         return tagService.getTagList(param);
     }
@@ -83,7 +80,7 @@ public class TagController {
         return new ModelAndView("/tag/tagList", utilMethod.setType("tag"));
     }
 
-    @RequestMapping("/tag/{tagIdx}")
+    @RequestMapping(value = "/tag/{tagIdx}", method = RequestMethod.GET)
     public ModelAndView getTagDetail(@PathVariable("tagIdx") Long tagIdx) {
         return new ModelAndView("/tag/tagModal", tagService.getTagDetail(tagIdx));
     }

@@ -13,10 +13,10 @@ window.onload = () => {
     }
 };
 
-function fncAjax(url, data, fnc) {
+function fncAjax(type, url, data, fnc) {
 
     $.ajax({
-        type: "GET"				    //"POST", "GET"
+        type: type				    //http method type
         , async: false				//true, false
         , url: url		            //Request URL
         , dataType: "json"			//전송받을 데이터의 타입
