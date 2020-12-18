@@ -54,7 +54,6 @@ public class MarkService {
                 .map(markEntityList, new TypeToken<List<MarkDTO>>() {}.getType());
 
         for(int i = 0; i < markEntityList.size(); i++) {
-            markList.get(i).setTagName(markEntityList.get(i).getTagEntity().getTagName());
             markList.get(i).setImgUrl(markEntityList.get(i).getTagEntity().getImgUrl());
         }
 
