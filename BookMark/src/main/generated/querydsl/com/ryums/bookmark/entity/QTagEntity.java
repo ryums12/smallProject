@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -25,6 +26,8 @@ public class QTagEntity extends EntityPathBase<TagEntity> {
     public final DateTimePath<java.time.LocalDateTime> chgDt = _super.chgDt;
 
     public final StringPath imgUrl = createString("imgUrl");
+
+    public final ListPath<MarkEntity, QMarkEntity> markEntity = this.<MarkEntity, QMarkEntity>createList("markEntity", MarkEntity.class, QMarkEntity.class, PathInits.DIRECT2);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> regDt = _super.regDt;

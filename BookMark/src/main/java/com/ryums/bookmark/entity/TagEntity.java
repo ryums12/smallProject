@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -21,6 +22,10 @@ public class TagEntity extends TimeEntity{
 
     @Column(name = "img_url")
     private String imgUrl;
+
+    @OneToMany(targetEntity = MarkEntity.class)
+    @JoinColumn(name = "tag_idx")
+    private List<MarkEntity> markEntity;
 
     @Builder
     public TagEntity(Long tagIdx, String tagName, String imgUrl) {

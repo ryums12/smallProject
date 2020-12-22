@@ -1,5 +1,7 @@
 package com.ryums.bookmark.service;
 
+import com.querydsl.core.Tuple;
+import com.ryums.bookmark.entity.MarkEntity;
 import com.ryums.bookmark.entity.TagEntity;
 import com.ryums.bookmark.repository.tag.TagRepository;
 import com.ryums.bookmark.dto.TagDTO;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +29,7 @@ public class TagService {
 
     public TagDTO setTagDTO(TagDTO tagDTO, String fileName) {
 
-        int pos = fileName.lastIndexOf( "." );
+        int pos = fileName.lastIndexOf(".");
         String ext = fileName.substring(pos + 1);
         String imgName = "tag_" + tagDTO.getTagName() + "." + ext;
         String imgUrl = "/files/" + imgName;
@@ -45,18 +48,20 @@ public class TagService {
     public Map<String, Object> getTagList(Map<String, Object> param) {
 
         Map<String, Object> dataMap = new HashMap<>();
+        List<TagDTO> tagList = new ArrayList<>();
 
         int page = Integer.parseInt((String) param.get("page"));
         int size = Integer.parseInt((String) param.get("size"));
-        String tag = (String) param.get("tag");
+        String tagName = (String) param.get("tag");
 
         Pageable pageable = PageRequest.of(page, size, Sort.by("tagIdx").descending());
 
-        List<TagEntity> entityTagList = tagRepository.findByTagNameContaining(tag, pageable);
-        List<TagDTO> tagList = modelMapper
-                .map(entityTagList, new TypeToken<List<TagDTO>>() {}.getType());
-
-        int listSize = tagRepository.countAllByTagNameContaining(tag);
+        if (param.get("isContainCount") != null) {
+            tagList = tagRepository.getTagListContainCount(pageable);
+        } else {
+            tagList = tagRepository.getTagList(tagName, pageable);;
+        }
+        long listSize = tagRepository.getTotalTagCount(tagName);
 
         dataMap.put("tagList", tagList);
         dataMap.put("size", listSize);

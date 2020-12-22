@@ -1,10 +1,7 @@
 package com.ryums.bookmark.dto;
 
 import com.ryums.bookmark.entity.TagEntity;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -12,13 +9,16 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class TagDTO {
 
     private Long tagIdx;
     @NotEmpty(message = "태그의 제목을 입력해 주십시오.")
     private String tagName;
     private String imgUrl;
+
     private String imgName;
+    private Long tagCount;
 
     public TagEntity toEntity() {
         TagEntity builder = TagEntity.builder()

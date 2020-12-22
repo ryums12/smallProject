@@ -59,7 +59,8 @@ function fncGetTagList(page) {
     const data = {
         "size"  : 10,
         "page"  : page,
-        "tag"   : ""
+        "tag"   : "",
+        "isContainCount": true
     };
 
     fncAjax("get", "/tag", data, fncSetTagList);
@@ -85,6 +86,7 @@ function fncSetTagList(data, response) {
                                 + "<img src='" + tagList[i].imgUrl + "' alt='tag thumbnail' class='img-thumbnail h-100'>"
                             + "</td>"
                             + "<td class='align-middle h-50px'>" + tagList[i].tagName +"</td>"
+                            + "<td class='align-middle h-50px'>" + tagList[i].tagCount +"</td>"
                             + "<td class='align-middle h-50px'>"
                                 + "<button class='btn btn-success' "
                                         + "data-toggle='modal' "
