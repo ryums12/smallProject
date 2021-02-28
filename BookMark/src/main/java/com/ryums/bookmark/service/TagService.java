@@ -27,16 +27,20 @@ public class TagService {
     private TagRepository tagRepository;
     private ModelMapper modelMapper;
 
-    public TagDTO setTagDTO(TagDTO tagDTO, String fileName) {
+    public Map<String, Object> setTagDTO(TagDTO tagDTO, String fileName) {
+
+        Map<String, Object> result = new HashMap<>();
 
         int pos = fileName.lastIndexOf(".");
         String ext = fileName.substring(pos + 1);
         String imgName = "tag_" + tagDTO.getTagName() + "." + ext;
         String imgUrl = "/files/" + imgName;
         tagDTO.setImgUrl(imgUrl);
-        tagDTO.setImgName(imgName);
 
-        return tagDTO;
+        result.put("tagDto", tagDTO);
+        result.put("imgName", imgName);
+
+        return result;
     }
 
     @Transactional
@@ -48,7 +52,7 @@ public class TagService {
     public Map<String, Object> getTagList(Map<String, Object> param) {
 
         Map<String, Object> dataMap = new HashMap<>();
-        List<TagDTO> tagList = new ArrayList<>();
+        List tagList = new ArrayList<>();
 
         int page = Integer.parseInt((String) param.get("page"));
         int size = Integer.parseInt((String) param.get("size"));

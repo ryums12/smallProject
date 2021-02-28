@@ -17,9 +17,6 @@ public class TagDTO {
     private String tagName;
     private String imgUrl;
 
-    private String imgName;
-    private Long tagCount;
-
     public TagEntity toEntity() {
         TagEntity builder = TagEntity.builder()
                 .tagIdx(tagIdx)

@@ -4,6 +4,7 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ryums.bookmark.dto.TagDTO;
+import com.ryums.bookmark.dto.TagIncludeCountDTO;
 import com.ryums.bookmark.entity.QMarkEntity;
 import com.ryums.bookmark.entity.QTagEntity;
 import com.ryums.bookmark.entity.TagEntity;
@@ -49,13 +50,13 @@ public class TagRepositoryImpl extends QuerydslRepositorySupport implements TagR
     }
 
     @Override
-    public List<TagDTO> getTagListContainCount(Pageable pageable) {
+    public List<TagIncludeCountDTO> getTagListContainCount(Pageable pageable) {
         JPAQueryFactory jpaQueryFactory = new JPAQueryFactory(entityManager);
         QMarkEntity markEntity = QMarkEntity.markEntity;
         QTagEntity tagEntity = QTagEntity.tagEntity;
 
         return jpaQueryFactory.select(Projections.fields(
-                    TagDTO.class,
+                    TagIncludeCountDTO.class,
                     tagEntity.tagIdx,
                     tagEntity.tagName,
                     tagEntity.imgUrl,

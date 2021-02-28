@@ -5,6 +5,7 @@ import com.ryums.bookmark.service.TagService;
 import com.ryums.bookmark.utils.UtilMethod;
 import com.ryums.bookmark.utils.files.StorageService;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -26,6 +27,7 @@ public class TagController {
     private TagService tagService;
     private StorageService storageService;
     private UtilMethod utilMethod;
+    private ModelMapper modelMapper;
 
     @RequestMapping("/tag/create")
     public ModelAndView createTagPage() {
@@ -49,10 +51,11 @@ public class TagController {
             } else {
                 MultipartFile file = fileRequest.getFile("tagImg");
                 String fileName = file.getOriginalFilename();
-                
-                if(!fileName.equals("") && !tagDTO.getImgUrl().equals("")) {
-                    tagDTO = tagService.setTagDTO(tagDTO, fileName);
-                    storageService.store(file, tagDTO.getImgName());
+
+                if(file != null) {
+                    Map<String, Object> tempObj = tagService.setTagDTO(tagDTO, fileName);
+                    tagDTO = modelMapper.map(tempObj.get("tagDto"), TagDTO.class);
+                    storageService.store(file, (String) tempObj.get("imgName"));
                 }
 
                 tagService.createTag(tagDTO);

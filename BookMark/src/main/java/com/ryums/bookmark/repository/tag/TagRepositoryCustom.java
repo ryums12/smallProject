@@ -1,6 +1,7 @@
 package com.ryums.bookmark.repository.tag;
 
 import com.ryums.bookmark.dto.TagDTO;
+import com.ryums.bookmark.dto.TagIncludeCountDTO;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -10,6 +11,6 @@ import java.util.List;
  * */
 public interface TagRepositoryCustom {
     List<TagDTO> getTagList(String tagName, Pageable pageable);
-    List<TagDTO> getTagListContainCount(Pageable pageable);
+    List<TagIncludeCountDTO> getTagListContainCount(Pageable pageable);
     long getTotalTagCount(String tagName);
 }
