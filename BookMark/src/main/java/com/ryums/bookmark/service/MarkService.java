@@ -22,9 +22,9 @@ import java.util.Map;
 @AllArgsConstructor
 public class MarkService {
 
-    private MarkRepository markRepository;
-    private ModelMapper modelMapper;
-    private UtilMethod utilMethod;
+    private final MarkRepository markRepository;
+    private final ModelMapper modelMapper;
+    private final UtilMethod utilMethod;
 
     @Transactional
     public ModelMap setMarkCreatePage() {
@@ -41,17 +41,16 @@ public class MarkService {
 
         Map<String, Object> dataMap = new HashMap<>();
 
-        int page = Integer.parseInt((String) param.get("page"));
-        int size = Integer.parseInt((String) param.get("size"));
-        String tag = (String) param.get("tag");
-        String title = (String) param.get("title");
-        String useYn = (String) param.get("useYn");
+        int page = Integer.parseInt(param.get("page").toString());
+        int size = Integer.parseInt(param.get("size").toString());
+        String tag = param.get("tag").toString();
+        String title = param.get("title").toString();
+        String useYn = param.get("useYn").toString();
 
         Pageable pageable = PageRequest.of(page, size, Sort.by("chgDt").descending());
 
         List<MarkEntity> markEntityList = markRepository.findMarkList(tag, title, useYn, pageable);
-        List<MarkDTO> markList = modelMapper
-                .map(markEntityList, new TypeToken<List<MarkDTO>>() {}.getType());
+        List<MarkDTO> markList = modelMapper.map(markEntityList, new TypeToken<List<MarkDTO>>() {}.getType());
 
         for(int i = 0; i < markEntityList.size(); i++) {
             markList.get(i).setImgUrl(markEntityList.get(i).getTagEntity().getImgUrl());
