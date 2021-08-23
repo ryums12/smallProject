@@ -1,13 +1,10 @@
 package com.ryums.bookmark.service;
 
-import com.querydsl.core.Tuple;
-import com.ryums.bookmark.entity.MarkEntity;
 import com.ryums.bookmark.entity.TagEntity;
 import com.ryums.bookmark.repository.tag.TagRepository;
 import com.ryums.bookmark.dto.TagDTO;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +20,8 @@ import java.util.Map;
 @AllArgsConstructor
 public class TagService {
 
-    private TagRepository tagRepository;
-    private ModelMapper modelMapper;
+    private final TagRepository tagRepository;
+    private final ModelMapper modelMapper;
 
     public Map<String, Object> setTagDTO(TagDTO tagDTO, String fileName) {
 
@@ -52,11 +48,11 @@ public class TagService {
     public Map<String, Object> getTagList(Map<String, Object> param) {
 
         Map<String, Object> dataMap = new HashMap<>();
-        List tagList = new ArrayList<>();
+        List<?> tagList;
 
-        int page = Integer.parseInt((String) param.get("page"));
-        int size = Integer.parseInt((String) param.get("size"));
-        String tagName = (String) param.get("tag");
+        int page = Integer.parseInt(param.get("page").toString());
+        int size = Integer.parseInt(param.get("size").toString());
+        String tagName = param.get("tag").toString();
 
         Pageable pageable = PageRequest.of(page, size, Sort.by("tagIdx").descending());
 
@@ -65,6 +61,7 @@ public class TagService {
         } else {
             tagList = tagRepository.getTagList(tagName, pageable);;
         }
+
         long listSize = tagRepository.getTotalTagCount(tagName);
 
         dataMap.put("tagList", tagList);
@@ -75,13 +72,10 @@ public class TagService {
 
     @Transactional
     public ModelMap getTagDetail(Long markIdx) {
-
         ModelMap modelMap = new ModelMap();
         TagEntity tagEntity = tagRepository.findAllByTagIdx(markIdx);
         TagDTO tagDTO = modelMapper.map(tagEntity, TagDTO.class);
-
         modelMap.put("tag", tagDTO);
-
         return modelMap;
     }
 }
